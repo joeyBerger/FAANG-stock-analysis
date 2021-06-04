@@ -63,16 +63,16 @@ RM = /usr/local/Cellar/cmake/3.19.4/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master"
+CMAKE_SOURCE_DIR = /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build"
+CMAKE_BINARY_DIR = /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/HelloWorld.dir/all
+all: CMakeFiles/FAANG-stock-analysis.dir/all
 
 .PHONY : all
 
@@ -82,36 +82,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/HelloWorld.dir/clean
+clean: CMakeFiles/FAANG-stock-analysis.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/HelloWorld.dir
+# Target rules for target CMakeFiles/FAANG-stock-analysis.dir
 
 # All Build rule for target.
-CMakeFiles/HelloWorld.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build/CMakeFiles" --progress-num=1,2 "Built target HelloWorld"
-.PHONY : CMakeFiles/HelloWorld.dir/all
+CMakeFiles/FAANG-stock-analysis.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=1,2 "Built target FAANG-stock-analysis"
+.PHONY : CMakeFiles/FAANG-stock-analysis.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/HelloWorld.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build/CMakeFiles" 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/HelloWorld.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build/CMakeFiles" 0
-.PHONY : CMakeFiles/HelloWorld.dir/rule
+CMakeFiles/FAANG-stock-analysis.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FAANG-stock-analysis.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles 0
+.PHONY : CMakeFiles/FAANG-stock-analysis.dir/rule
 
 # Convenience name for target.
-HelloWorld: CMakeFiles/HelloWorld.dir/rule
+FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/rule
 
-.PHONY : HelloWorld
+.PHONY : FAANG-stock-analysis
 
 # clean rule for target.
-CMakeFiles/HelloWorld.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/clean
-.PHONY : CMakeFiles/HelloWorld.dir/clean
+CMakeFiles/FAANG-stock-analysis.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/clean
+.PHONY : CMakeFiles/FAANG-stock-analysis.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -67,10 +67,10 @@ RM = /usr/local/Cellar/cmake/3.19.4/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master"
+CMAKE_SOURCE_DIR = /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build"
+CMAKE_BINARY_DIR = /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build/CMakeFiles" "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named HelloWorld
+# Target rules for targets named FAANG-stock-analysis
 
 # Build rule for target.
-HelloWorld: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 HelloWorld
-.PHONY : HelloWorld
+FAANG-stock-analysis: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FAANG-stock-analysis
+.PHONY : FAANG-stock-analysis
 
 # fast build rule for target.
-HelloWorld/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/build
-.PHONY : HelloWorld/fast
+FAANG-stock-analysis/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/build
+.PHONY : FAANG-stock-analysis/fast
 
 src/main.o: src/main.cpp.o
 
@@ -148,7 +148,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -157,7 +157,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -166,7 +166,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HelloWorld.dir/build.make CMakeFiles/HelloWorld.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -177,7 +177,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... HelloWorld"
+	@echo "... FAANG-stock-analysis"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/src/main.cpp" "/Users/joeyberger/Downloads/untitled folder/CppND-Capstone-Hello-World-master/build/CMakeFiles/HelloWorld.dir/src/main.cpp.o"
+  "/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/main.cpp" "/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
