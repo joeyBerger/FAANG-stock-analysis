@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
+
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/main.cpp
 iostream
 -
@@ -21,4 +23,26 @@ stdexcept
 -
 sstream
 -
+stock.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
+dataimporter.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
+
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
+iostream
+-
+string
+-
+fstream
+-
+vector
+-
+utility
+-
+stdexcept
+-
+sstream
+-
+dataimporter.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
 
