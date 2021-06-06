@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_process.h
+iostream
+-
+
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/main.cpp
@@ -53,4 +57,12 @@ sstream
 -
 map
 -
+iomanip
+-
+cmath
+-
+math.h
+-
+data_process.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_process.h
 

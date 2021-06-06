@@ -21,7 +21,7 @@ class Stock {
             _ticker = ticker;
             _filepath = "../src/stock_data/" + ticker + ".csv";
             _stock_data = _data_importer.importData(_filepath);
-            strategies.analyze(_stock_data);
+            strategies.analyze(_ticker,_stock_data);
             // fetchData();
         };
         void fetchData();

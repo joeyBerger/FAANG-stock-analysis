@@ -4,6 +4,11 @@
 #include <sstream> // std::stringstream
 using namespace std;
 #include <map>
+#include <iomanip> 
+#include <cmath> 
+#include <math.h>
+#include "data_process.h"
+
 class Strategies {
     public:
         Strategies() {
@@ -13,28 +18,46 @@ class Strategies {
             // data_column_map.insert(pair<string, int>("Low", 3));
             // data_column_map.insert(pair<string, int>("Close", 4));
             // data_column_map.insert(pair<string, int>("Adj_Close", 5));
-            // data_column_map.insert(pair<string, int>("Volume", 6));                
+            // data_column_map.insert(pair<string, int>("Volume", 6));
+            
         }
-        void analyze(std::vector<std::pair<std::string, std::vector<float>>> data) {
+        void analyze(string ticker, std::vector<std::pair<std::string, std::vector<float>>> data) {
             _data = data;
-            // int ** days_between 
-
-            //get rid of days_between_vec
-
+            _ticker = ticker;
             vector<int> days_between;
             for (int i = 0; i < 1; i++) days_between.push_back(1);
-            // vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
-            vector<float> percentage_drop_buy_points { .03 };
+            vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
+            vector<int> buy_order_limits { 5, 35, 50, 100, 250 };
+            // vector<float> percentage_drop_buy_points { .01 };
+
             // analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points);
-            analyze_market_dip_to_current_date(percentage_drop_buy_points);
+            analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits);
         }
 
     private:
         float _buying_threshold;
         static map<string, int> data_column_map;
+        string _ticker;
         std::vector<std::pair<std::string, std::vector<float>>> _data; //this shold get instantiated in constructor
+        DataProcess data_process;
 
-        void analyze_same_closing_day_market_dip(vector<int> days_between_vec, vector<float> percentage_drop_buy_points) {
+        float round(float var) {
+            // 37.66666 * 100 =3766.66
+            // 3766.66 + .5 =3767.16    for rounding off value
+            // then type cast to int so value is 3767
+            // then divided by 100 so the value converted into 37.67
+            float value = (int)(var * 100 + .5);
+            return (float)value / 100;
+        }
+
+        float round(float x, int n){ 
+            int d = 0; 
+            if((x * pow(10, n + 1)) - (floor(x * pow(10, n))) > 4) d = 1; 
+            x = (floor(x * pow(10, n)) + d) / pow(10, n); 
+            return x; 
+        }
+
+        void analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
             //make this a static variable
             static map<string, int> column_map { 
                 { "Date", 0}, 
@@ -49,53 +72,48 @@ class Strategies {
             auto open = _data.at(column_map["Open"]).second;
             auto close = _data.at(column_map["Close"]).second;
 
-
-
-            // for (int day_between_idx = 0; day_between_idx < days_betwee_vec.size(); i++)
-
-            for (auto days_between : days_between_vec) {
+            for (auto days_between : days_between_collection) {
                 for (auto percentage_drop_point : percentage_drop_buy_points) {
 
                     int hits = 0;
                     int misses = 0;
                     float hit_gain_total = 0;
                     float miss_gain_total = 0;
-                    // int days_between = 1;
+                    float dollar_buy_amount = 1.0;
+                    float total_dollar_invested = 0;
 
                     for (int i = 0; i < open.size(); i++) {
-                        //closed more than a percent lower
                         if (1 - close.at(i) / open.at(i) > percentage_drop_point) {
                             if (i + days_between < open.size()) {
                                 int day_diff = i + days_between;
                                 float buy_point = close.at(i);
                                 float sell_point = close.at(day_diff);
-                                if (buy_point < sell_point) {
-                                    hits++;
-                                    hit_gain_total += sell_point/buy_point - 1;
-                                } else {
-                                    misses++;
-                                    miss_gain_total += 1 - sell_point/buy_point;
-                                }
+                                if (buy_point < sell_point) {hits++;}
+                                else {misses++;}
+                                total_dollar_invested += dollar_buy_amount * (sell_point/buy_point);
                             }
                         }
                     }
 
-                    cout << "hits " << hits << "\n";
-                    cout << "misses " << misses << "\n";
+                    // cout << "hits " << hits << "\n";
+                    // cout << "misses " << misses << "\n";
+                    // cout << "percent earned: " <<  (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100 << "%\n";
 
-                    cout << "hit_gain_total " << hit_gain_total << "\n";
-                    cout << "miss_gain_total " << miss_gain_total << "\n";
-
-                    cout << "hits avg.: " << hit_gain_total/hits * 100 << "%\n";
-                    cout << "misses avg.: " << miss_gain_total/misses * 100 << "%\n";
-                    
-                    cout << "overall strategy gain/loss: " << (hit_gain_total - miss_gain_total) * 100 << "%\n";
+                    cout << data_process.report_strategy_findings(
+                        _ticker,
+                        to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                        to_string(hits),
+                        to_string(misses),
+                        to_string(percentage_drop_point*100),
+                        to_string(100)
+                    ) << "\n";
                 }
             }
+
+
         }
 
-
-        void analyze_same_closing_day_market_dip_using_adjusted_close(vector<int> days_between_vec, vector<float> percentage_drop_buy_points) {
+        void analyze_same_closing_day_market_dip_using_adjusted_close(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
             //make this a static variable
             static map<string, int> column_map { 
                 { "Date", 0}, 
@@ -110,52 +128,37 @@ class Strategies {
             auto open = _data.at(column_map["Open"]).second;
             auto close = _data.at(column_map["Adj_Close"]).second;
 
-
-
-            // for (int day_between_idx = 0; day_between_idx < days_betwee_vec.size(); i++)
-
-            for (auto days_between : days_between_vec) {
+            for (auto days_between : days_between_collection) {
                 for (auto percentage_drop_point : percentage_drop_buy_points) {
 
                     int hits = 0;
                     int misses = 0;
                     float hit_gain_total = 0;
                     float miss_gain_total = 0;
-                    // int days_between = 1;
+                    float dollar_buy_amount = 1.0;
+                    float total_dollar_invested = 0;
 
                     for (int i = 0; i < open.size(); i++) {
-                        //closed more than a percent lower
                         if (1 - close.at(i) / open.at(i) > percentage_drop_point) {
                             if (i + days_between < open.size()) {
                                 int day_diff = i + days_between;
                                 float buy_point = close.at(i);
                                 float sell_point = close.at(day_diff);
-                                if (buy_point < sell_point) {
-                                    hits++;
-                                    hit_gain_total += sell_point/buy_point - 1;
-                                } else {
-                                    misses++;
-                                    miss_gain_total += 1 - sell_point/buy_point;
-                                }
+                                if (buy_point < sell_point) {hits++;}
+                                else {misses++;}
+                                total_dollar_invested += dollar_buy_amount * (sell_point/buy_point);
                             }
                         }
                     }
 
                     cout << "hits " << hits << "\n";
                     cout << "misses " << misses << "\n";
-
-                    cout << "hit_gain_total " << hit_gain_total << "\n";
-                    cout << "miss_gain_total " << miss_gain_total << "\n";
-
-                    cout << "hits avg.: " << hit_gain_total/hits * 100 << "%\n";
-                    cout << "misses avg.: " << miss_gain_total/misses * 100 << "%\n";
-                    
-                    cout << "overall strategy gain/loss: " << (hit_gain_total - miss_gain_total) * 100 << "%\n";
+                    cout << "percent earned: " <<  (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100 << "%\n";
                 }
             }
         }
 
-        void analyze_market_dip_to_current_date(vector<float> percentage_drop_buy_points) {
+        void analyze_market_dip_to_current_date(vector<float> percentage_drop_buy_points, vector<int> buy_order_limits) {
             //make this a static variable
             static map<string, int> column_map { 
                 { "Date", 0}, 
@@ -170,54 +173,38 @@ class Strategies {
             auto open = _data.at(column_map["Open"]).second;
             auto close = _data.at(column_map["Close"]).second;
 
-            // for (int day_between_idx = 0; day_between_idx < days_betwee_vec.size(); i++)
-
-                for (auto percentage_drop_point : percentage_drop_buy_points) {
+            for (auto percentage_drop_point : percentage_drop_buy_points) {
+                for (auto buy_order_limit : buy_order_limits) {
                     int hits = 0;
                     int misses = 0;
-                    float hit_gain_total = 0;
-                    float miss_gain_total = 0;
                     float dollar_buy_amount = 1.0;
                     float total_dollar_invested = 0;
-                    float loss = 0;
+                    float totalTimeInvested = 0.0;
 
                     for (int i = 0; i < open.size(); i++) {
-                        if (1 - close.at(i) / open.at(i) > percentage_drop_point) {
+                        if (misses + hits < buy_order_limit && 1 - close.at(i) / open.at(i) > percentage_drop_point) {
                             float buy_point = close.at(i);
                             float sell_point = close.back();
-                            if (buy_point < sell_point) {
-                                hits++;
-                                // total_dollar_invested += dollar_buy_amount * (sell_point/buy_point);
-                                // cout << buy_point << "\n";
-                                // cout << sell_point/buy_point - 1 << "\n";
-                                hit_gain_total += sell_point/buy_point - 1;
-                            } else {
-                                misses++;
-                                miss_gain_total += 1 - sell_point/buy_point;
-                                cout << buy_point << "\n";
-                                cout << 1 - sell_point/buy_point << "\n";
-
-                                // loss += dollar_buy_amount * (sell_point/buy_point);
-                            }
+                            if (buy_point < sell_point) {hits++;} 
+                            else {misses++;}
                             total_dollar_invested += dollar_buy_amount * (sell_point/buy_point);
+                            totalTimeInvested += open.size() - i;
                         }
                     }
 
-                    cout << "hits " << hits << "\n";
-                    cout << "misses " << misses << "\n";
-
-                    cout << "hit_gain_total " << hit_gain_total << "\n";
-                    cout << "miss_gain_total " << miss_gain_total << "\n";
-
-                    cout << "hits avg.: " << hit_gain_total/hits * 100 << "%\n";
-                    cout << "misses avg.: " << miss_gain_total/misses * 100 << "%\n";
-                    
-                    cout << "overall strategy gain/loss: " << (hit_gain_total - miss_gain_total) * 100 << "%\n";
-
-                    cout << total_dollar_invested - (dollar_buy_amount * (hits + misses)) << "\n"; 
-                    cout << "total spent: " <<  (dollar_buy_amount * (hits + misses)) << "\n";
-                    cout << "percent earned: " <<  total_dollar_invested / (dollar_buy_amount * (hits + misses)) << "\n";
+                    cout << data_process.report_strategy_findings(
+                        _ticker,
+                        to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                        to_string(hits),
+                        to_string(misses),
+                        to_string(percentage_drop_point*100),
+                        to_string(int(totalTimeInvested / (hits + misses))),
+                        to_string(hits + misses),
+                        to_string(buy_order_limit),
+                        to_string(buy_order_limit - (hits + misses))
+                    ) << "\n";
                 }
+            }
         }
 };
 

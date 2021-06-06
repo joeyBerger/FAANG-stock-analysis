@@ -14,8 +14,8 @@ using namespace std;
 int main(int argc, const char * argv[]) {
 
 
-    // Stock t0("AAPL");
-    Stock t1("AMZN");
+    Stock t0("AAPL");
+    // Stock t1("AMZN");
     // Stock t2("FB");
     // Stock t3("GOOG");
     // Stock t4("NFLX");
