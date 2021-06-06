@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_process.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
 iostream
 -
 
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/main.cpp
 iostream
@@ -29,8 +29,6 @@ sstream
 -
 stock.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
-dataimporter.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
 iostream
@@ -47,8 +45,8 @@ stdexcept
 -
 sstream
 -
-dataimporter.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
+data_importer.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
 strategies.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h
 
@@ -63,6 +61,6 @@ cmath
 -
 math.h
 -
-data_process.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_process.h
+data_aggregator.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
 

@@ -1,16 +1,20 @@
-#ifndef DATAPROCESS
-#define DATAPROCESS
+#ifndef DATAAGGREGATOR
+#define DATAAGGREGATOR
 
 using namespace std;
 #include <iostream>
 
-class DataProcess {
+
+
+class DataAggregator {
     public:
-        string report_strategy_findings(string ticker, string percent_gained,string days_selling_after_buying,string winning_picks,string losing_picks,string percentage_drop) {
+        string report_strategy_findings(string ticker, string percent_gained,string days_selling_after_buying,string winning_picks,string losing_picks,string percentage_drop, bool adjusted_market_close = false) {
+            string day_label = days_selling_after_buying == "1" ? "DAY" : "DAYS";
+            string close_label = adjusted_market_close ? "ADJUSTED CLOSE" : "CLOSE";
             string s =
             "------------------------------------------------\n"
             "ANALYSIS FOR BUYING DIP WHEN MARKET CLOSES DOWN " + percentage_drop + "%\n"
-            "AND SELLING TODAY, OVER THE COURSE OF 1 YEAR: " + "\n" +
+            "AND SELLING AT MARKET " + close_label + " IN " + days_selling_after_buying + " " + day_label + ": " + "\n" +
             "------------------------------------------------\n" +
             "STOCK: " + ticker + "\n" +
             "PERCENT GAINED: " + percent_gained + "%\n" +

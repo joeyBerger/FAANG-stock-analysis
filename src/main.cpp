@@ -7,7 +7,6 @@
 #include <sstream> // std::stringstream
 
 #include "stock.h"
-#include "dataimporter.h"
 
 using namespace std;
 

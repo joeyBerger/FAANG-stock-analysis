@@ -7,7 +7,7 @@ using namespace std;
 #include <iomanip> 
 #include <cmath> 
 #include <math.h>
-#include "data_process.h"
+#include "data_aggregator.h"
 
 class Strategies {
     public:
@@ -25,13 +25,13 @@ class Strategies {
             _data = data;
             _ticker = ticker;
             vector<int> days_between;
-            for (int i = 0; i < 1; i++) days_between.push_back(1);
+            for (int i = 0; i < 5; i++) days_between.push_back(i+1);
             vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
             vector<int> buy_order_limits { 5, 35, 50, 100, 250 };
-            // vector<float> percentage_drop_buy_points { .01 };
 
             // analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points);
-            analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits);
+            analyze_same_closing_day_market_dip_using_adjusted_close(days_between,percentage_drop_buy_points);
+            // analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits);
         }
 
     private:
@@ -39,7 +39,7 @@ class Strategies {
         static map<string, int> data_column_map;
         string _ticker;
         std::vector<std::pair<std::string, std::vector<float>>> _data; //this shold get instantiated in constructor
-        DataProcess data_process;
+        DataAggregator data_aggregator;
 
         float round(float var) {
             // 37.66666 * 100 =3766.66
@@ -95,22 +95,16 @@ class Strategies {
                         }
                     }
 
-                    // cout << "hits " << hits << "\n";
-                    // cout << "misses " << misses << "\n";
-                    // cout << "percent earned: " <<  (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100 << "%\n";
-
-                    cout << data_process.report_strategy_findings(
+                    cout << data_aggregator.report_strategy_findings(
                         _ticker,
                         to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                        to_string(days_between),
                         to_string(hits),
                         to_string(misses),
-                        to_string(percentage_drop_point*100),
-                        to_string(100)
+                        to_string(percentage_drop_point*100)
                     ) << "\n";
                 }
             }
-
-
         }
 
         void analyze_same_closing_day_market_dip_using_adjusted_close(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
@@ -151,9 +145,15 @@ class Strategies {
                         }
                     }
 
-                    cout << "hits " << hits << "\n";
-                    cout << "misses " << misses << "\n";
-                    cout << "percent earned: " <<  (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100 << "%\n";
+                    cout << data_aggregator.report_strategy_findings(
+                        _ticker,
+                        to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                        to_string(days_between),
+                        to_string(hits),
+                        to_string(misses),
+                        to_string(percentage_drop_point*100),
+                        true
+                    ) << "\n";
                 }
             }
         }
@@ -174,6 +174,7 @@ class Strategies {
             auto close = _data.at(column_map["Close"]).second;
 
             for (auto percentage_drop_point : percentage_drop_buy_points) {
+                vector<float> resulting_percetage_gain;
                 for (auto buy_order_limit : buy_order_limits) {
                     int hits = 0;
                     int misses = 0;
@@ -191,10 +192,12 @@ class Strategies {
                             totalTimeInvested += open.size() - i;
                         }
                     }
-
-                    cout << data_process.report_strategy_findings(
+                    float percent_gained = (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100;
+                    if (resulting_percetage_gain.size() > 0 && resulting_percetage_gain.back() == percent_gained) continue;
+                    resulting_percetage_gain.push_back(percent_gained);
+                    cout << data_aggregator.report_strategy_findings(
                         _ticker,
-                        to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                        to_string(percent_gained),
                         to_string(hits),
                         to_string(misses),
                         to_string(percentage_drop_point*100),

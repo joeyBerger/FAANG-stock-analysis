@@ -10,7 +10,7 @@
 #include <stdexcept> // std::runtime_error
 #include <sstream> // std::stringstream
 
-#include "dataimporter.h"
+#include "data_importer.h"
 #include "strategies.h"
 using namespace std;
 
