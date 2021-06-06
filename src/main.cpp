@@ -15,10 +15,10 @@ int main(int argc, const char * argv[]) {
 
 
     Stock t0("AAPL");
-    // Stock t1("AMZN");
-    // Stock t2("FB");
-    // Stock t3("GOOG");
-    // Stock t4("NFLX");
+    Stock t1("AMZN");
+    Stock t2("FB");
+    Stock t3("GOOG");
+    Stock t4("NFLX");
     // auto thing = t4.fetchData();
     // for (auto t : thing) {
     //     cout << t.first << "\n";

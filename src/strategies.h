@@ -22,8 +22,8 @@ class Strategies {
 
             int hits = 0;
             int misses = 0;
-            float hit_gain_total = 1;
-            float miss_gain_total = 1;
+            float hit_gain_total = 0;
+            float miss_gain_total = 0;
             int days_between = 1;
 
             for (int i = 0; i < open.size(); i++) {
@@ -31,14 +31,14 @@ class Strategies {
                 if (1 - close.at(i) / open.at(i) > .01) {
                     if (i + days_between < open.size()) {
                         int day_diff = i + days_between;
-                        //buy time = close.at(i)
-                        //sell time = close.at(day_diff)
-                        if (close.at(i) < close.at(day_diff)) {
+                        float buy_point = close.at(i);
+                        float sell_point = close.at(day_diff);
+                        if (buy_point < sell_point) {
                             hits++;
-                            hit_gain_total += close.at(day_diff)/close.at(i) - 1;
+                            hit_gain_total += sell_point/buy_point - 1;
                         } else {
                             misses++;
-                            miss_gain_total -= 1 - close.at(day_diff)/close.at(i);
+                            miss_gain_total += 1 - sell_point/buy_point;
                         }
                     }
                 }
@@ -53,7 +53,8 @@ class Strategies {
             cout << "hits avg." << hit_gain_total/hits << "\n";
             cout << "misses avg." << miss_gain_total/misses << "\n";
             
-            cout << "overall strategy gain/loss: " << ((hit_gain_total - 1) - (1 - miss_gain_total)) * 100 << "%\n";
+            cout << "overall strategy gain/loss: " << (hit_gain_total - miss_gain_total) * 100 << "%\n";
+
         }
     private:
         float _buying_threshold;
