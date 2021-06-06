@@ -4,4 +4,5 @@
 CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/dataimporter.h
 CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/stock.h
+CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/strategies.h
 

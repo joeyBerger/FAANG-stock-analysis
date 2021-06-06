@@ -1,6 +1,6 @@
 # FFANG Stock Analysis
 
-Evaluates historical yearly data for FAANG stocks.
+Evaluates historical yearly data for FAANG stocks.  
 
 ## Dependencies for Running Locally
 * cmake >= 3.7

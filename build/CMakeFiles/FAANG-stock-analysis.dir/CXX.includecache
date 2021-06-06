@@ -45,4 +45,12 @@ sstream
 -
 dataimporter.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/dataimporter.h
+strategies.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h
+
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h
+sstream
+-
+map
+-
 
