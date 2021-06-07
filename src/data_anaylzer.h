@@ -14,6 +14,23 @@ class DataAnalyzer {
         DataAnalyzer(vector<vector<RawData>> raw_data_collection) : _raw_data_collection(raw_data_collection) {}
         DataAnalyzer() {}
         void init(vector<vector<RawData>> raw_data_collection) {_raw_data_collection = raw_data_collection;}
+
+        void output_buy_dip_with_days_trade_strategy(string type) {
+            auto data_collection = return_raw_data_collection(type);
+            cout << data_collection.back().getType() << "\n";
+            for (auto data : data_collection) {
+                _data_aggregator.report_strategy_findings(
+                    data.getTicker(),
+                    data.getPercentGained(),
+                    data.getDaysAfterBuying(),
+                    data.getWinningPicks(),
+                    data.getLosingPicks(),
+                    data.getPercentageDropBuySignal(),
+                    type != "dip_at_market_close" 
+                );
+            }
+            _data_aggregator.print_large_data_seperater();
+        }
         
         void output_year_to_date_buy_strategy() {
             auto data_collection = return_raw_data_collection("yearly_analysis");
@@ -32,8 +49,41 @@ class DataAnalyzer {
             }
         }
 
+        void output_best_buy_dip_with_days_trade_strategy_by_percent(string type) {
+            auto data = find_top_performing_by_percent(type);
+            _data_aggregator.report_buy_dip_with_days_trade_strategy_by_percent(
+                data.getTicker(),
+                data.getPercentGained(),
+                data.getDaysAfterBuying(),
+                data.getWinningPicks(),
+                data.getLosingPicks(),
+                data.getPercentageDropBuySignal(),
+                type != "dip_at_market_close" 
+            );
+            _data_aggregator.print_large_data_seperater();
+        }
+
+        void output_best_buy_dip_with_days_trade_strategy_by_earnings(string type) {
+            float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
+            auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,type);
+
+            _data_aggregator.report_buy_dip_with_days_trade_strategy_by_earnings(
+                data.getTicker(),
+                data.getPercentGained(),
+                data.getDaysAfterBuying(),
+                data.getWinningPicks(),
+                data.getLosingPicks(),
+                data.getPercentageDropBuySignal(),
+                dollars_earned,
+                total_investment,
+                individual_buy_dollar_amount,
+                type != "dip_at_market_close"
+            );
+            _data_aggregator.print_large_data_seperater();
+        }
+        
         void output_best_year_to_date_buy_strategy_by_percent() {
-            auto data = find_top_performing_yearly_performance_by_percent();
+            auto data = find_top_performing_by_percent("yearly_analysis");
             _data_aggregator.report_best_year_to_date_buy_strategy_by_percent(
                 data.getTicker(),
                 data.getPercentGained(),
@@ -49,7 +99,7 @@ class DataAnalyzer {
 
         void output_best_year_to_date_buy_strategy_by_potential_earnings() {
             float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
-            auto data = find_top_performing_yearly_performance_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount);
+            auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,"yearly_analysis");
             _data_aggregator.report_best_year_to_date_buy_strategy_by_potential_earnings(
                 data.getTicker(),
                 data.getPercentGained(),
@@ -86,8 +136,8 @@ class DataAnalyzer {
             return rd;
         }
 
-        RawData find_top_performing_yearly_performance_by_percent() {
-            auto data_collection = return_raw_data_collection("yearly_analysis");
+        RawData find_top_performing_by_percent(string id) {
+            auto data_collection = return_raw_data_collection(id);
             int raw_data_idx = 0, i = 0;
             float highest_percent_gainer = 0.0;
             for (auto data : data_collection) {
@@ -100,8 +150,8 @@ class DataAnalyzer {
             return data_collection.at(raw_data_idx);
         }
 
-        RawData find_top_performing_yearly_performance_by_potential_earnings(float &dollars_earned, float &total_investment, float individual_buy_dollar_amount) {
-            auto data_collection = return_raw_data_collection("yearly_analysis");
+        RawData find_top_performing_by_potential_earnings(float &dollars_earned, float &total_investment, float individual_buy_dollar_amount, string id) {
+            auto data_collection = return_raw_data_collection(id);
             int raw_data_idx = 0, i = 0;
             for (auto data : data_collection) {
                 int investment = (data.getWinningPicks() + data.getLosingPicks()) * individual_buy_dollar_amount;

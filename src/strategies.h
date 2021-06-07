@@ -19,10 +19,11 @@ class Strategies {
             // data_column_map.insert(pair<string, int>("Low", 3));
             // data_column_map.insert(pair<string, int>("Close", 4));
             // data_column_map.insert(pair<string, int>("Adj_Close", 5));
-            // data_column_map.insert(pair<string, int>("Volume", 6));
-            
+            // data_column_map.insert(pair<string, int>("Volume", 6));            
         }
+
         vector<vector<RawData>> analyze(string ticker, std::vector<std::pair<std::string, std::vector<float>>> data) {
+            //TODO: put in constructor..
             _data = data;
             _ticker = ticker;
 
@@ -33,7 +34,7 @@ class Strategies {
             vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
             vector<int> buy_order_limits { 5, 35, 50, 100, 250 };
 
-            // analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points);
+            raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points));
             // analyze_same_closing_day_market_dip_using_adjusted_close(days_between,percentage_drop_buy_points);
             raw_data.push_back(analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits));
             return raw_data;
@@ -46,23 +47,24 @@ class Strategies {
         std::vector<std::pair<std::string, std::vector<float>>> _data; //this shold get instantiated in constructor
         DataAggregator data_aggregator;
 
-        float round(float var) {
-            // 37.66666 * 100 =3766.66
-            // 3766.66 + .5 =3767.16    for rounding off value
-            // then type cast to int so value is 3767
-            // then divided by 100 so the value converted into 37.67
-            float value = (int)(var * 100 + .5);
-            return (float)value / 100;
-        }
+        //TODO: get rid of round
+        // float round(float var) {
+        //     // 37.66666 * 100 =3766.66
+        //     // 3766.66 + .5 =3767.16    for rounding off value
+        //     // then type cast to int so value is 3767
+        //     // then divided by 100 so the value converted into 37.67
+        //     float value = (int)(var * 100 + .5);
+        //     return (float)value / 100;
+        // }
 
-        float round(float x, int n){ 
-            int d = 0; 
-            if((x * pow(10, n + 1)) - (floor(x * pow(10, n))) > 4) d = 1; 
-            x = (floor(x * pow(10, n)) + d) / pow(10, n); 
-            return x; 
-        }
+        // float round(float x, int n){ 
+        //     int d = 0; 
+        //     if((x * pow(10, n + 1)) - (floor(x * pow(10, n))) > 4) d = 1; 
+        //     x = (floor(x * pow(10, n)) + d) / pow(10, n); 
+        //     return x; 
+        // }
 
-        void analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
+        vector<RawData> analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
             //make this a static variable
             static map<string, int> column_map { 
                 { "Date", 0}, 
@@ -76,6 +78,7 @@ class Strategies {
 
             auto open = _data.at(column_map["Open"]).second;
             auto close = _data.at(column_map["Close"]).second;
+            vector<RawData> raw_data_collection;
 
             for (auto days_between : days_between_collection) {
                 for (auto percentage_drop_point : percentage_drop_buy_points) {
@@ -99,17 +102,22 @@ class Strategies {
                             }
                         }
                     }
+                    float percent_gained = (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100;
 
-                    cout << data_aggregator.report_strategy_findings(
-                        _ticker,
-                        to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
-                        to_string(days_between),
-                        to_string(hits),
-                        to_string(misses),
-                        to_string(percentage_drop_point*100)
-                    ) << "\n";
+                    // cout << data_aggregator.report_strategy_findings(
+                    //     _ticker,
+                    //     to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                    //     to_string(days_between),
+                    //     to_string(hits),
+                    //     to_string(misses),
+                    //     to_string(percentage_drop_point*100)
+                    // ) << "\n";
+                    // cout << days_between << "\n";
+                    RawData rd("dip_at_market_close",_ticker,percent_gained,percentage_drop_point*100,hits,misses,days_between);
+                    raw_data_collection.push_back(rd);
                 }
             }
+            return raw_data_collection;
         }
 
         void analyze_same_closing_day_market_dip_using_adjusted_close(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
@@ -150,15 +158,15 @@ class Strategies {
                         }
                     }
 
-                    cout << data_aggregator.report_strategy_findings(
-                        _ticker,
-                        to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
-                        to_string(days_between),
-                        to_string(hits),
-                        to_string(misses),
-                        to_string(percentage_drop_point*100),
-                        true
-                    ) << "\n";
+                    // cout << data_aggregator.report_strategy_findings(
+                    //     _ticker,
+                    //     to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
+                    //     to_string(days_between),
+                    //     to_string(hits),
+                    //     to_string(misses),
+                    //     to_string(percentage_drop_point*100),
+                    //     true
+                    // ) << "\n";
                 }
             }
         }
@@ -198,27 +206,11 @@ class Strategies {
                             totalTimeInvested += open.size() - i;
                         }
                     }
+
                     float percent_gained = (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100;
-                    // if (resulting_percetage_gain.size() > 0 && resulting_percetage_gain.back() == percent_gained) continue;
-                    // resulting_percetage_gain.push_back(percent_gained);
-
-                    // cout << data_aggregator.report_strategy_findings(
-                    //     _ticker,
-                    //     to_string(percent_gained),
-                    //     to_string(hits),
-                    //     to_string(misses),
-                    //     to_string(percentage_drop_point*100),
-                    //     to_string(int(totalTimeInvested / (hits + misses))),
-                    //     to_string(hits + misses),
-                    //     to_string(buy_order_limit),
-                    //     to_string(buy_order_limit - (hits + misses))
-                    // ) << "\n";
-
-
-
-                    // percentage_drop_point, buy_order_limit, percent_gained, total maarket orders, 
-
-                    
+                    if (resulting_percetage_gain.size() > 0 && resulting_percetage_gain.back() == percent_gained) continue;
+                    resulting_percetage_gain.push_back(percent_gained);
+                   
                     RawData rd("yearly_analysis",_ticker,percent_gained,percentage_drop_point*100,buy_order_limit,hits,misses,int(totalTimeInvested / (hits + misses)));
                     raw_data_collection.push_back(rd);
                 }

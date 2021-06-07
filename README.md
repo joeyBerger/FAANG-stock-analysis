@@ -1,4 +1,4 @@
-# FFANG Stock Analysis
+# FAANG Stock Analysis
 
 Evaluates historical yearly data for FAANG stocks.  
 

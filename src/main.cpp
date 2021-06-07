@@ -31,13 +31,14 @@ int main(int argc, const char * argv[]) {
     vector<Stock> stocks = {
         // Stock("APPL"),
         Stock("AMZN"),
-        Stock("FB"),
-        Stock("GOOG"),
-        Stock("NFLX")
+        // Stock("FB"),
+        // Stock("GOOG"),
+        // Stock("NFLX")
     };
 
     for (auto stock : stocks) {
         stock.printStrongestInvestmentStrategies();
+        // stock.printAllInvestmentStrategies();
     }
 
     return 0;
