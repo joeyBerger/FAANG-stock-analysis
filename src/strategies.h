@@ -8,6 +8,7 @@ using namespace std;
 #include <cmath> 
 #include <math.h>
 #include "data_aggregator.h"
+#include "raw_data.h"
 
 class Strategies {
     public:
@@ -21,17 +22,21 @@ class Strategies {
             // data_column_map.insert(pair<string, int>("Volume", 6));
             
         }
-        void analyze(string ticker, std::vector<std::pair<std::string, std::vector<float>>> data) {
+        vector<vector<RawData>> analyze(string ticker, std::vector<std::pair<std::string, std::vector<float>>> data) {
             _data = data;
             _ticker = ticker;
+
+            vector<vector<RawData>> raw_data;
+
             vector<int> days_between;
             for (int i = 0; i < 5; i++) days_between.push_back(i+1);
             vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
             vector<int> buy_order_limits { 5, 35, 50, 100, 250 };
 
             // analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points);
-            analyze_same_closing_day_market_dip_using_adjusted_close(days_between,percentage_drop_buy_points);
-            // analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits);
+            // analyze_same_closing_day_market_dip_using_adjusted_close(days_between,percentage_drop_buy_points);
+            raw_data.push_back(analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits));
+            return raw_data;
         }
 
     private:
@@ -158,7 +163,7 @@ class Strategies {
             }
         }
 
-        void analyze_market_dip_to_current_date(vector<float> percentage_drop_buy_points, vector<int> buy_order_limits) {
+        vector<RawData> analyze_market_dip_to_current_date(vector<float> percentage_drop_buy_points, vector<int> buy_order_limits) {
             //make this a static variable
             static map<string, int> column_map { 
                 { "Date", 0}, 
@@ -172,6 +177,7 @@ class Strategies {
 
             auto open = _data.at(column_map["Open"]).second;
             auto close = _data.at(column_map["Close"]).second;
+            vector<RawData> raw_data_collection;
 
             for (auto percentage_drop_point : percentage_drop_buy_points) {
                 vector<float> resulting_percetage_gain;
@@ -193,21 +199,31 @@ class Strategies {
                         }
                     }
                     float percent_gained = (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100;
-                    if (resulting_percetage_gain.size() > 0 && resulting_percetage_gain.back() == percent_gained) continue;
-                    resulting_percetage_gain.push_back(percent_gained);
-                    cout << data_aggregator.report_strategy_findings(
-                        _ticker,
-                        to_string(percent_gained),
-                        to_string(hits),
-                        to_string(misses),
-                        to_string(percentage_drop_point*100),
-                        to_string(int(totalTimeInvested / (hits + misses))),
-                        to_string(hits + misses),
-                        to_string(buy_order_limit),
-                        to_string(buy_order_limit - (hits + misses))
-                    ) << "\n";
+                    // if (resulting_percetage_gain.size() > 0 && resulting_percetage_gain.back() == percent_gained) continue;
+                    // resulting_percetage_gain.push_back(percent_gained);
+
+                    // cout << data_aggregator.report_strategy_findings(
+                    //     _ticker,
+                    //     to_string(percent_gained),
+                    //     to_string(hits),
+                    //     to_string(misses),
+                    //     to_string(percentage_drop_point*100),
+                    //     to_string(int(totalTimeInvested / (hits + misses))),
+                    //     to_string(hits + misses),
+                    //     to_string(buy_order_limit),
+                    //     to_string(buy_order_limit - (hits + misses))
+                    // ) << "\n";
+
+
+
+                    // percentage_drop_point, buy_order_limit, percent_gained, total maarket orders, 
+
+                    
+                    RawData rd("yearly_analysis",_ticker,percent_gained,percentage_drop_point*100,buy_order_limit,hits,misses,int(totalTimeInvested / (hits + misses)));
+                    raw_data_collection.push_back(rd);
                 }
             }
+            return raw_data_collection;
         }
 };
 

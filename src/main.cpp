@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, const char * argv[]) {
 
 
-    Stock t0("AAPL");
+    // Stock t0("AAPL");
     // Stock t1("AMZN");
     // Stock t2("FB");
     // Stock t3("GOOG");
@@ -25,5 +25,20 @@ int main(int argc, const char * argv[]) {
     //         cout << "\t" << i << "\n";
     //     }
     // }
+
+    // t0.printStrongestInvestmentStrategies();
+
+    vector<Stock> stocks = {
+        // Stock("APPL"),
+        Stock("AMZN"),
+        Stock("FB"),
+        Stock("GOOG"),
+        Stock("NFLX")
+    };
+
+    for (auto stock : stocks) {
+        stock.printStrongestInvestmentStrategies();
+    }
+
     return 0;
 }
