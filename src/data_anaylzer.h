@@ -10,7 +10,6 @@ class RawData;
 class DataAnalyzer {
 
     public:
-        // DataAnalyzer(vector<vector<RawData>> raw_data_collection) : _raw_data_collection(raw_data_collection)  {}
         DataAnalyzer(vector<vector<RawData>> raw_data_collection) : _raw_data_collection(raw_data_collection) {}
         DataAnalyzer() {}
         void init(vector<vector<RawData>> raw_data_collection) {_raw_data_collection = raw_data_collection;}
@@ -122,7 +121,7 @@ class DataAnalyzer {
         }
 
         void compare_all_stock_strategy_data(vector<vector<vector<RawData>>> raw_data_collection) {
-            vector<RawData> best_yearly_strategy_findings;
+            vector<RawData> best_yearly_strategy_by_percent;
 
             float dollars_earned [raw_data_collection.size()];
             float total_investment [raw_data_collection.size()];
@@ -134,7 +133,7 @@ class DataAnalyzer {
                 dollars_earned[i] = 0.0;
                 total_investment[i] = 0.0;
                 _raw_data_collection = raw_data_collection[i];
-                best_yearly_strategy_findings.push_back(find_top_performing_by_potential_earnings(dollars_earned[i],total_investment[i],individual_buy_dollar_amount,"yearly_analysis"));
+                best_yearly_strategy_by_dollars_earned.push_back(find_top_performing_by_potential_earnings(dollars_earned[i],total_investment[i],individual_buy_dollar_amount,"yearly_analysis"));
                 if (dollars_earned[i] > highest_Price) {
                     highest_Price = dollars_earned[i];
                     winning_idx = i;
