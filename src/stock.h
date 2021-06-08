@@ -26,12 +26,17 @@ class Stock {
             _ticker = ticker;
             _filepath = "../src/stock_data/" + ticker + ".csv";
             _stock_data = _data_importer.importData(_filepath);
-            _raw_data = strategies.analyze(_ticker,_stock_data);
-            analyzeStockData();
+            // _raw_data = strategies.analyze(_ticker,_stock_data);
+            // analyzeStockData();
             // fetchData();
         };
 
         //TODO: CHANGE ALL CAMEL CASING FUNCTIONS
+
+        void read_csv_data() {
+            _raw_data = strategies.analyze(_ticker,_stock_data);
+            // analyzeStockData();
+        }
 
         void analyzeStockData() {
             // DataAnalyzer _data_analyzer(_raw_data);

@@ -28,24 +28,39 @@ int main(int argc, const char * argv[]) {
 
     // t0.printStrongestInvestmentStrategies();
 
-    vector<Stock> stocks = {
-        Stock("AAPL"),
-        Stock("AMZN"),
-        Stock("FB"),
-        Stock("GOOG"),
-        Stock("NFLX")
-    };
 
-    for (auto stock : stocks) {
-        // stock.printAllInvestmentStrategies();
-        // stock.printStrongestInvestmentStrategies();
-    }
+    // Vehicle v0;    // default constructor
+    // Vehicle v1(1, "Vehicle 1"); // initializing constructor
 
-    // Stock *s = new Stock();
+    Stock s("AMZN");
 
-    Stock *s;
-    s = new Stock();
-    s->printStrongestStockGivenVariousTickers(stocks);
+    // launch a thread that modifies the Vehicle name
+    // std::future<void> ftr = std::async([](Stock ) {
+    //     v.read_csv_data();
+    // },std::move(s));
+
+    // std::cout << v0.getName() << std::endl;
+    // ftr.wait();
+    // std::cout << v0.getName() << std::endl;
+
+
+
+    // vector<Stock> stocks = {
+    //     Stock("AAPL"),
+    //     Stock("AMZN"),
+    //     Stock("FB"),
+    //     Stock("GOOG"),
+    //     Stock("NFLX")
+    // };
+
+    // for (auto stock : stocks) {
+    //     // stock.printAllInvestmentStrategies();
+    //     // stock.printStrongestInvestmentStrategies();
+    // }
+
+    // Stock *s;
+    // s = new Stock();
+    // s->printStrongestStockGivenVariousTickers(stocks);
 
 
     return 0;
