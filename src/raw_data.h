@@ -8,7 +8,7 @@ using namespace std;
 class RawData {
     public:
 
-
+        RawData() {}
 
         RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, int winning_picks, int losing_picks, int days_selling_after_buying) :
             _type(type),

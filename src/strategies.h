@@ -34,8 +34,8 @@ class Strategies {
             vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
             vector<int> buy_order_limits { 5, 35, 50, 100, 250 };
 
-            raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points));
-            // analyze_same_closing_day_market_dip_using_adjusted_close(days_between,percentage_drop_buy_points);
+            raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,"dip_at_market_close"));
+            raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,"dips_at_market_adjusted_close"));
             raw_data.push_back(analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits));
             return raw_data;
         }
@@ -64,7 +64,7 @@ class Strategies {
         //     return x; 
         // }
 
-        vector<RawData> analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
+        vector<RawData> analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points, string id) {
             //make this a static variable
             static map<string, int> column_map { 
                 { "Date", 0}, 
@@ -77,7 +77,8 @@ class Strategies {
             };
 
             auto open = _data.at(column_map["Open"]).second;
-            auto close = _data.at(column_map["Close"]).second;
+            string type = id == "dip_at_market_close" ? "Close" : "Adj_Close";
+            auto close = _data.at(column_map[type]).second;
             vector<RawData> raw_data_collection;
 
             for (auto days_between : days_between_collection) {
@@ -104,71 +105,11 @@ class Strategies {
                     }
                     float percent_gained = (total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100;
 
-                    // cout << data_aggregator.report_strategy_findings(
-                    //     _ticker,
-                    //     to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
-                    //     to_string(days_between),
-                    //     to_string(hits),
-                    //     to_string(misses),
-                    //     to_string(percentage_drop_point*100)
-                    // ) << "\n";
-                    // cout << days_between << "\n";
-                    RawData rd("dip_at_market_close",_ticker,percent_gained,percentage_drop_point*100,hits,misses,days_between);
+                    RawData rd(id,_ticker,percent_gained,percentage_drop_point*100,hits,misses,days_between);
                     raw_data_collection.push_back(rd);
                 }
             }
             return raw_data_collection;
-        }
-
-        void analyze_same_closing_day_market_dip_using_adjusted_close(vector<int> days_between_collection, vector<float> percentage_drop_buy_points) {
-            //make this a static variable
-            static map<string, int> column_map { 
-                { "Date", 0}, 
-                { "Open", 1 },
-                { "High", 2}, 
-                { "Low", 3 },
-                { "Close", 4}, 
-                { "Adj_Close", 5 },
-                { "Volume", 6}
-            };
-
-            auto open = _data.at(column_map["Open"]).second;
-            auto close = _data.at(column_map["Adj_Close"]).second;
-
-            for (auto days_between : days_between_collection) {
-                for (auto percentage_drop_point : percentage_drop_buy_points) {
-
-                    int hits = 0;
-                    int misses = 0;
-                    float hit_gain_total = 0;
-                    float miss_gain_total = 0;
-                    float dollar_buy_amount = 1.0;
-                    float total_dollar_invested = 0;
-
-                    for (int i = 0; i < open.size(); i++) {
-                        if (1 - close.at(i) / open.at(i) > percentage_drop_point) {
-                            if (i + days_between < open.size()) {
-                                int day_diff = i + days_between;
-                                float buy_point = close.at(i);
-                                float sell_point = close.at(day_diff);
-                                if (buy_point < sell_point) {hits++;}
-                                else {misses++;}
-                                total_dollar_invested += dollar_buy_amount * (sell_point/buy_point);
-                            }
-                        }
-                    }
-
-                    // cout << data_aggregator.report_strategy_findings(
-                    //     _ticker,
-                    //     to_string((total_dollar_invested / (dollar_buy_amount * (hits + misses)) - 1) * 100),
-                    //     to_string(days_between),
-                    //     to_string(hits),
-                    //     to_string(misses),
-                    //     to_string(percentage_drop_point*100),
-                    //     true
-                    // ) << "\n";
-                }
-            }
         }
 
         vector<RawData> analyze_market_dip_to_current_date(vector<float> percentage_drop_buy_points, vector<int> buy_order_limits) {

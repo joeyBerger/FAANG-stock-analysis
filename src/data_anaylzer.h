@@ -34,6 +34,7 @@ class DataAnalyzer {
         
         void output_year_to_date_buy_strategy() {
             auto data_collection = return_raw_data_collection("yearly_analysis");
+            cout << "data_collection " << _raw_data_collection.size() << "\n";
             for (auto data : data_collection) {
                 _data_aggregator.report_strategy_findings(
                     data.getTicker(),
@@ -66,7 +67,6 @@ class DataAnalyzer {
         void output_best_buy_dip_with_days_trade_strategy_by_earnings(string type) {
             float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
             auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,type);
-            cout << "output_best_buy_dip_with_days_trade_strategy_by_earnings\n";
             _data_aggregator.report_buy_dip_with_days_trade_strategy_by_earnings(
                 data.getTicker(),
                 data.getPercentGained(),
@@ -102,11 +102,10 @@ class DataAnalyzer {
             // auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,"yearly_analysis");
 
             // float dollars_earned = 0.0, total_investment = 0.0
-            if (data == nullptr) {                
+            if (data == nullptr) {
                 *data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,INDIVIDUAL_BUY_DOLLAR_AMOUNT,"yearly_analysis");
-            }
-
-            cout << "got here\n";
+                // *data = &r;
+            } 
 
             _data_aggregator.report_best_year_to_date_buy_strategy_by_potential_earnings(
                 data->getTicker(),

@@ -5,63 +5,43 @@
 #include <utility> // std::pair
 #include <stdexcept> // std::runtime_error
 #include <sstream> // std::stringstream
-
+#include <future>
 #include "stock.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
 
+    vector<Stock> stocks = {
+        Stock("AAPL"),
+        Stock("AMZN"),
+        Stock("FB"),
+        Stock("GOOG"),
+        Stock("NFLX")
+    };
 
-    // Stock t0("AAPL");
-    // Stock t1("AMZN");
-    // Stock t2("FB");
-    // Stock t3("GOOG");
-    // Stock t4("NFLX");
-    // auto thing = t4.fetchData();
-    // for (auto t : thing) {
-    //     cout << t.first << "\n";
-    //     for (auto i : t.second) {
-    //         cout << "\t" << i << "\n";
+    // vector<thread> threads;
+
+    // for (int i = 0; i < stocks.size(); i++) {
+    //     thread th(stocks[i]);
+    //     threads.push_back(std::move(th));
+    // }
+
+    // for (thread & th : threads) {
+    //     if (th.joinable()) {
+    //         cout << "joined\n";
+    //         th.join();
     //     }
     // }
 
-    // t0.printStrongestInvestmentStrategies();
+    for (auto stock : stocks) {
+        stock.print_all_investment_strategies();
+        // stock.print_strongest_investment_strategies();
+    }
 
-
-    // Vehicle v0;    // default constructor
-    // Vehicle v1(1, "Vehicle 1"); // initializing constructor
-
-    Stock s("AMZN");
-
-    // launch a thread that modifies the Vehicle name
-    // std::future<void> ftr = std::async([](Stock ) {
-    //     v.read_csv_data();
-    // },std::move(s));
-
-    // std::cout << v0.getName() << std::endl;
-    // ftr.wait();
-    // std::cout << v0.getName() << std::endl;
-
-
-
-    // vector<Stock> stocks = {
-    //     Stock("AAPL"),
-    //     Stock("AMZN"),
-    //     Stock("FB"),
-    //     Stock("GOOG"),
-    //     Stock("NFLX")
-    // };
-
-    // for (auto stock : stocks) {
-    //     // stock.printAllInvestmentStrategies();
-    //     // stock.printStrongestInvestmentStrategies();
-    // }
-
-    // Stock *s;
-    // s = new Stock();
-    // s->printStrongestStockGivenVariousTickers(stocks);
-
+    Stock *s;
+    s = new Stock();
+    s->print_strongest_stock_given_various_tickers(stocks);
 
     return 0;
 }
