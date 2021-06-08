@@ -56,9 +56,9 @@ class DataAggregator {
             cout << setprecision(3) << percentage_drop << "%,\n";
             cout << "AND SELLING IN " << days_selling_after_buying << " " << return_days_string(days_selling_after_buying) << " AT " << return_close_string(adjusted_market_close) << ":\n";
             print_header();
-            print_daily_stock_info(ticker,percent_gained,winning_picks,losing_picks,days_selling_after_buying);
             cout << "DOLLARS INVESTED: " << (int)total_investment << "\n";
             cout << "PROFIT: " << (int)dollars_earned << "\n";
+            print_daily_stock_info(ticker,percent_gained,winning_picks,losing_picks,days_selling_after_buying);
         }
 
 

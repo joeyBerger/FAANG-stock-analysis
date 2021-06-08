@@ -66,7 +66,7 @@ class DataAnalyzer {
         void output_best_buy_dip_with_days_trade_strategy_by_earnings(string type) {
             float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
             auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,type);
-
+            cout << "output_best_buy_dip_with_days_trade_strategy_by_earnings\n";
             _data_aggregator.report_buy_dip_with_days_trade_strategy_by_earnings(
                 data.getTicker(),
                 data.getPercentGained(),
@@ -97,26 +97,52 @@ class DataAnalyzer {
             );
         }
 
-        void output_best_year_to_date_buy_strategy_by_potential_earnings() {
-            float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
-            auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,"yearly_analysis");
+        void output_best_year_to_date_buy_strategy_by_potential_earnings(RawData *data = nullptr, float dollars_earned = 0.0, float total_investment = 0.0) {
+            // float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
+            // auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,"yearly_analysis");
+            // float dollars_earned = 0.0, total_investment = 0.0
+            if (data == nullptr) {                
+                *data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,INDIVIDUAL_BUY_DOLLAR_AMOUNT,"yearly_analysis");
+            }
+
             _data_aggregator.report_best_year_to_date_buy_strategy_by_potential_earnings(
-                data.getTicker(),
-                data.getPercentGained(),
-                data.getWinningPicks(),
-                data.getLosingPicks(),
-                data.getPercentageDropBuySignal(),
-                data.getAverageTimeInvested(),
-                data.getWinningPicks() + data.getLosingPicks(),
-                data.getBuyOrderLimit(),
-                data.getBuyOrderLimit() - (data.getWinningPicks() + data.getLosingPicks()),
+                data->getTicker(),
+                data->getPercentGained(),
+                data->getWinningPicks(),
+                data->getLosingPicks(),
+                data->getPercentageDropBuySignal(),
+                data->getAverageTimeInvested(),
+                data->getWinningPicks() + data->getLosingPicks(),
+                data->getBuyOrderLimit(),
+                data->getBuyOrderLimit() - (data->getWinningPicks() + data->getLosingPicks()),
                 dollars_earned,
                 total_investment,
-                individual_buy_dollar_amount
+                INDIVIDUAL_BUY_DOLLAR_AMOUNT
             );
         }
 
-        void compare_all_stock_strategy_data() {}
+        void compare_all_stock_strategy_data(vector<vector<vector<RawData>>> raw_data_collection) {
+            vector<RawData> best_yearly_strategy_findings;
+
+            float dollars_earned [raw_data_collection.size()];
+            float total_investment [raw_data_collection.size()];
+            float individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
+
+            float highest_Price = 0;
+            int winning_idx = 0;
+            for (int i = 0; i < raw_data_collection.size(); i++) {
+                dollars_earned[i] = 0.0;
+                total_investment[i] = 0.0;
+                _raw_data_collection = raw_data_collection[i];
+                best_yearly_strategy_findings.push_back(find_top_performing_by_potential_earnings(dollars_earned[i],total_investment[i],individual_buy_dollar_amount,"yearly_analysis"));
+                if (dollars_earned[i] > highest_Price) {
+                    highest_Price = dollars_earned[i];
+                    winning_idx = i;
+                }
+            }
+
+            output_best_year_to_date_buy_strategy_by_potential_earnings(&data,dollars_earned[winning_idx],total_investment[winning_idx]);
+        }
         
 
     private:

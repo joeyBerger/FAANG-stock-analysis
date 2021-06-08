@@ -19,6 +19,9 @@ using namespace std;
 
 class Stock {
     public:
+
+        Stock() {}
+
         Stock(string ticker) {
             _ticker = ticker;
             _filepath = "../src/stock_data/" + ticker + ".csv";
@@ -28,20 +31,29 @@ class Stock {
             // fetchData();
         };
 
+        //TODO: CHANGE ALL CAMEL CASING FUNCTIONS
+
         void analyzeStockData() {
             // DataAnalyzer _data_analyzer(_raw_data);
             _data_analyzer.init(_raw_data);
         }
 
         void printAllInvestmentStrategies() {
-            _data_analyzer.output_buy_dip_with_days_trade_strategy("dip_at_market_close");
-            // _data_analyzer.output_year_to_date_buy_strategy();
+            // _data_analyzer.output_buy_dip_with_days_trade_strategy("dip_at_market_close");
+            _data_analyzer.output_year_to_date_buy_strategy();
         }
 
         void printStrongestInvestmentStrategies() {
-            _data_analyzer.output_best_buy_dip_with_days_trade_strategy_by_percent("dip_at_market_close");
+            // _data_analyzer.output_best_buy_dip_with_days_trade_strategy_by_percent("dip_at_market_close");
+            _data_analyzer.output_best_buy_dip_with_days_trade_strategy_by_earnings("dip_at_market_close");
             // _data_analyzer.output_best_year_to_date_buy_strategy_by_percent();
             // _data_analyzer.output_best_year_to_date_buy_strategy_by_potential_earnings();
+        }
+
+        void printStrongestStockGivenVariousTickers(vector<Stock> stocks) {
+            vector<vector<vector<RawData>>> raw_data_collection;
+            for (auto stock : stocks) {raw_data_collection.push_back(stock._raw_data);}
+            _data_analyzer.compare_all_stock_strategy_data(raw_data_collection);
         }
 
     private:

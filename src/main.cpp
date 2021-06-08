@@ -29,17 +29,24 @@ int main(int argc, const char * argv[]) {
     // t0.printStrongestInvestmentStrategies();
 
     vector<Stock> stocks = {
-        // Stock("APPL"),
+        Stock("AAPL"),
         Stock("AMZN"),
-        // Stock("FB"),
-        // Stock("GOOG"),
-        // Stock("NFLX")
+        Stock("FB"),
+        Stock("GOOG"),
+        Stock("NFLX")
     };
 
     for (auto stock : stocks) {
-        stock.printStrongestInvestmentStrategies();
         // stock.printAllInvestmentStrategies();
+        // stock.printStrongestInvestmentStrategies();
     }
+
+    // Stock *s = new Stock();
+
+    Stock *s;
+    s = new Stock();
+    s->printStrongestStockGivenVariousTickers(stocks);
+
 
     return 0;
 }
