@@ -10,8 +10,8 @@
 
 int main(int argc, const char * argv[]) {
     
-    const bool PRINT_ALL_MASS_DATA = false;
-    const bool PRINT_TOP_PERFORMING_STRATEGIES = false;
+    const bool PRINT_ALL_MASS_DATA = true;
+    const bool PRINT_TOP_PERFORMING_STRATEGIES = true;
     const bool PRINT_TOP_PERFOMRING_AMONG_ALL_FAANG_STOCKS = true;
 
     vector<Stock> stocks = {

@@ -19,15 +19,6 @@ class DataAnalyzer {
             auto data_collection = return_raw_data_collection(type);
             cout << data_collection.back().getType() << "\n";
             for (auto data : data_collection) {
-                // _data_aggregator.report_strategy_findings(
-                //     data.getTicker(),
-                //     data.getPercentGained(),
-                //     data.getDaysAfterBuying(),
-                //     data.getWinningPicks(),
-                //     data.getLosingPicks(),
-                //     data.getPercentageDropBuySignal(),
-                //     type != "dip_at_market_close" 
-                // );
                 _data_aggregator.report_strategy_findings(data);
             }
             _data_aggregator.print_large_data_seperater();
@@ -37,17 +28,6 @@ class DataAnalyzer {
             auto data_collection = return_raw_data_collection("yearly_analysis");
             cout << "data_collection " << _raw_data_collection.size() << "\n";
             for (auto data : data_collection) {
-                // _data_aggregator.report_strategy_findings(
-                //     data.getTicker(),
-                //     data.getPercentGained(),
-                //     data.getWinningPicks(),
-                //     data.getLosingPicks(),
-                //     data.getPercentageDropBuySignal(),
-                //     data.getAverageTimeInvested(),
-                //     data.getWinningPicks() + data.getLosingPicks(),
-                //     data.getBuyOrderLimit(),
-                //     data.getBuyOrderLimit() - (data.getWinningPicks() + data.getLosingPicks())
-                // );
                 _data_aggregator.report_strategy_findings(data,data.getWinningPicks() + data.getLosingPicks(),data.getBuyOrderLimit() - (data.getWinningPicks() + data.getLosingPicks()));
             }
         }
@@ -62,34 +42,16 @@ class DataAnalyzer {
             float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
             auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,type);
             _data_aggregator.report_buy_dip_with_days_trade_strategy_by_earnings(
-                // data.getTicker(),
-                // data.getPercentGained(),
-                // data.getDaysAfterBuying(),
-                // data.getWinningPicks(),
-                // data.getLosingPicks(),
-                // data.getPercentageDropBuySignal(),
                 data,
                 dollars_earned,
                 total_investment,
                 individual_buy_dollar_amount
-                // type != "dip_at_market_close"
             );
             _data_aggregator.print_large_data_seperater();
         }
         
         void output_best_year_to_date_buy_strategy_by_percent() {
             auto data = find_top_performing_by_percent("yearly_analysis");
-            // _data_aggregator.report_best_year_to_date_buy_strategy_by_percent(
-            //     data.getTicker(),
-            //     data.getPercentGained(),
-            //     data.getWinningPicks(),
-            //     data.getLosingPicks(),
-            //     data.getPercentageDropBuySignal(),
-            //     data.getAverageTimeInvested(),
-            //     data.getWinningPicks() + data.getLosingPicks(),
-            //     data.getBuyOrderLimit(),
-            //     data.getBuyOrderLimit() - (data.getWinningPicks() + data.getLosingPicks())
-            // );
             _data_aggregator.report_best_year_to_date_buy_strategy_by_percent(
                 data,
                 data.getWinningPicks() + data.getLosingPicks(),
@@ -98,29 +60,6 @@ class DataAnalyzer {
         }
 
         void output_best_year_to_date_buy_strategy_by_potential_earnings() {
-            // float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
-            // auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,"yearly_analysis");
-
-            // float dollars_earned = 0.0, total_investment = 0.0
-            // if (data == nullptr) {
-            //     *data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,INDIVIDUAL_BUY_DOLLAR_AMOUNT,"yearly_analysis");
-            //     // *data = &r;
-            // } 
-
-            // _data_aggregator.report_best_year_to_date_buy_strategy_by_potential_earnings(
-            //     data->getTicker(),
-            //     data->getPercentGained(),
-            //     data->getWinningPicks(),
-            //     data->getLosingPicks(),
-            //     data->getPercentageDropBuySignal(),
-            //     data->getAverageTimeInvested(),
-            //     data->getWinningPicks() + data->getLosingPicks(),
-            //     data->getBuyOrderLimit(),
-            //     data->getBuyOrderLimit() - (data->getWinningPicks() + data->getLosingPicks()),
-            //     dollars_earned,
-            //     total_investment,
-            //     INDIVIDUAL_BUY_DOLLAR_AMOUNT
-            // );
             float dollars_earned = 0.0, total_investment = 0.0;
             auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,INDIVIDUAL_BUY_DOLLAR_AMOUNT,"yearly_analysis");
             _data_aggregator.report_best_year_to_date_buy_strategy_by_potential_earnings(
@@ -162,7 +101,6 @@ class DataAnalyzer {
                 total_investment[winning_idx],
                 INDIVIDUAL_BUY_DOLLAR_AMOUNT
             );
-            // output_best_year_to_date_buy_strategy_by_potential_earnings(&data,dollars_earned[winning_idx],total_investment[winning_idx]);
         }
         
 

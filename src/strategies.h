@@ -19,10 +19,11 @@ class Strategies {
             // data_column_map.insert(pair<string, int>("Low", 3));
             // data_column_map.insert(pair<string, int>("Close", 4));
             // data_column_map.insert(pair<string, int>("Adj_Close", 5));
-            // data_column_map.insert(pair<string, int>("Volume", 6));            
+            // data_column_map.insert(pair<string, int>("Volume", 6));     
+
         }
 
-        vector<vector<RawData>> analyze(string ticker, std::vector<std::pair<std::string, std::vector<float>>> data) {
+        vector<vector<RawData>> run_strategies(string ticker, std::vector<std::pair<std::string, std::vector<float>>> data) {
             //TODO: put in constructor..
             _data = data;
             _ticker = ticker;
@@ -33,6 +34,7 @@ class Strategies {
             for (int i = 0; i < 5; i++) days_between.push_back(i+1);
             vector<float> percentage_drop_buy_points { .01, .015, .02, .025, .03, .035, .04 };
             vector<int> buy_order_limits { 5, 35, 50, 100, 250 };
+             //TODO: put in constructor..
 
             raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,"dip_at_market_close"));
             raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,"dips_at_market_adjusted_close"));

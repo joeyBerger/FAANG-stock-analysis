@@ -9,15 +9,9 @@ class RawData {
     public:
          
         RawData();
-        // RawData(Stock::Strategy_Type af) {}
         RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, int winning_picks, int losing_picks, int days_selling_after_buying);
         //TODO: replace string with enum
         RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, int buy_order_limit, int winning_picks, int losing_picks, int average_time_invested);
-
-
-        // RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, int buy_order_limit, int winning_picks, int losing_picks, int average_time_invested) {
-
-        // }
         
         string getType();
         string getTicker();
@@ -28,11 +22,6 @@ class RawData {
         int getLosingPicks();
         int getAverageTimeInvested();
         int getDaysAfterBuying();
-
-        // enum TrafficLightPhase {
-        //     red,
-        //     green
-        // };
 
     private:
         string _type;
