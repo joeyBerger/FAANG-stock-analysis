@@ -169,6 +169,33 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/raw_data.o: src/raw_data.cpp.o
+
+.PHONY : src/raw_data.o
+
+# target to build an object file
+src/raw_data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o
+.PHONY : src/raw_data.cpp.o
+
+src/raw_data.i: src/raw_data.cpp.i
+
+.PHONY : src/raw_data.i
+
+# target to preprocess a source file
+src/raw_data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.i
+.PHONY : src/raw_data.cpp.i
+
+src/raw_data.s: src/raw_data.cpp.s
+
+.PHONY : src/raw_data.s
+
+# target to generate assembly for a file
+src/raw_data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.s
+.PHONY : src/raw_data.cpp.s
+
 src/stock.o: src/stock.cpp.o
 
 .PHONY : src/stock.o
@@ -208,6 +235,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/raw_data.o"
+	@echo "... src/raw_data.i"
+	@echo "... src/raw_data.s"
 	@echo "... src/stock.o"
 	@echo "... src/stock.i"
 	@echo "... src/stock.s"

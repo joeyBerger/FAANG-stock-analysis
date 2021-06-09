@@ -2,12 +2,10 @@
 #define STOCK_H
 
 #include <iostream>
-
 #include <string>
 #include <fstream>
 #include <vector>
 #include <utility> // std::pair
-#include <stdexcept> // std::runtime_error
 #include <sstream> // std::stringstream
 
 #include "data_importer.h"
@@ -15,9 +13,7 @@
 #include "raw_data.h"
 #include "data_anaylzer.h"
 
-
-#include <thread>
-using namespace std;
+// using namespace std;
 
 class Stock {
     public:
@@ -30,11 +26,11 @@ class Stock {
         void print_strongest_investment_strategies();
         void print_strongest_stock_given_various_tickers(vector<Stock> stocks);
 
-        void operator()() {
-            cout << "operator\n";
-            read_csv_data();
-            analyze_stock_data();
-        }
+        enum Strategy_Type {
+            dip_at_market_close,
+            dips_at_market_adjusted_close,
+            best_yearly_strategy_by_dollar_earned
+        };
 
     private:
         DataImporter _data_importer;
