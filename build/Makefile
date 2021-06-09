@@ -142,6 +142,33 @@ FAANG-stock-analysis/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/build
 .PHONY : FAANG-stock-analysis/fast
 
+src/data_aggregator.o: src/data_aggregator.cpp.o
+
+.PHONY : src/data_aggregator.o
+
+# target to build an object file
+src/data_aggregator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.o
+.PHONY : src/data_aggregator.cpp.o
+
+src/data_aggregator.i: src/data_aggregator.cpp.i
+
+.PHONY : src/data_aggregator.i
+
+# target to preprocess a source file
+src/data_aggregator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.i
+.PHONY : src/data_aggregator.cpp.i
+
+src/data_aggregator.s: src/data_aggregator.cpp.s
+
+.PHONY : src/data_aggregator.s
+
+# target to generate assembly for a file
+src/data_aggregator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.s
+.PHONY : src/data_aggregator.cpp.s
+
 src/data_importer.o: src/data_importer.cpp.o
 
 .PHONY : src/data_importer.o
@@ -286,6 +313,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FAANG-stock-analysis"
+	@echo "... src/data_aggregator.o"
+	@echo "... src/data_aggregator.i"
+	@echo "... src/data_aggregator.s"
 	@echo "... src/data_importer.o"
 	@echo "... src/data_importer.i"
 	@echo "... src/data_importer.s"
