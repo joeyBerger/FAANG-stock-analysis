@@ -9,3 +9,11 @@ CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o
  /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
  /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
  /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h
+CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.o
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_anaylzer.h
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.cpp
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
+ /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h

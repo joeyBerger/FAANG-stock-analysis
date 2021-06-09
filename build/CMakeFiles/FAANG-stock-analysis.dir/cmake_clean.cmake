@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o"
+  "CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.o"
   "FAANG-stock-analysis"
   "FAANG-stock-analysis.pdb"
 )

@@ -42,6 +42,6 @@ int main(int argc, const char * argv[]) {
     Stock *s;
     s = new Stock();
     s->print_strongest_stock_given_various_tickers(stocks);
-
+    
     return 0;
 }

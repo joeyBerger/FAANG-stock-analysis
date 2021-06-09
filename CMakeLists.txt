@@ -7,4 +7,4 @@ set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
 project(FAANG-stock-analysis)
 
-add_executable(FAANG-stock-analysis src/main.cpp)
+add_executable(FAANG-stock-analysis src/main.cpp src/stock.cpp)

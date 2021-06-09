@@ -169,6 +169,33 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/stock.o: src/stock.cpp.o
+
+.PHONY : src/stock.o
+
+# target to build an object file
+src/stock.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.o
+.PHONY : src/stock.cpp.o
+
+src/stock.i: src/stock.cpp.i
+
+.PHONY : src/stock.i
+
+# target to preprocess a source file
+src/stock.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.i
+.PHONY : src/stock.cpp.i
+
+src/stock.s: src/stock.cpp.s
+
+.PHONY : src/stock.s
+
+# target to generate assembly for a file
+src/stock.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.s
+.PHONY : src/stock.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -181,6 +208,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/stock.o"
+	@echo "... src/stock.i"
+	@echo "... src/stock.s"
 .PHONY : help
 
 
