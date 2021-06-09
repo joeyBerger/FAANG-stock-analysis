@@ -169,6 +169,33 @@ src/data_aggregator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.s
 .PHONY : src/data_aggregator.cpp.s
 
+src/data_anaylzer.o: src/data_anaylzer.cpp.o
+
+.PHONY : src/data_anaylzer.o
+
+# target to build an object file
+src/data_anaylzer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.o
+.PHONY : src/data_anaylzer.cpp.o
+
+src/data_anaylzer.i: src/data_anaylzer.cpp.i
+
+.PHONY : src/data_anaylzer.i
+
+# target to preprocess a source file
+src/data_anaylzer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.i
+.PHONY : src/data_anaylzer.cpp.i
+
+src/data_anaylzer.s: src/data_anaylzer.cpp.s
+
+.PHONY : src/data_anaylzer.s
+
+# target to generate assembly for a file
+src/data_anaylzer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.s
+.PHONY : src/data_anaylzer.cpp.s
+
 src/data_importer.o: src/data_importer.cpp.o
 
 .PHONY : src/data_importer.o
@@ -316,6 +343,9 @@ help:
 	@echo "... src/data_aggregator.o"
 	@echo "... src/data_aggregator.i"
 	@echo "... src/data_aggregator.s"
+	@echo "... src/data_anaylzer.o"
+	@echo "... src/data_anaylzer.i"
+	@echo "... src/data_anaylzer.s"
 	@echo "... src/data_importer.o"
 	@echo "... src/data_importer.i"
 	@echo "... src/data_importer.s"

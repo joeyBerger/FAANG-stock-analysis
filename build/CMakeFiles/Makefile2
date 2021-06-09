@@ -93,12 +93,12 @@ clean: CMakeFiles/FAANG-stock-analysis.dir/clean
 CMakeFiles/FAANG-stock-analysis.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target FAANG-stock-analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target FAANG-stock-analysis"
 .PHONY : CMakeFiles/FAANG-stock-analysis.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/FAANG-stock-analysis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FAANG-stock-analysis.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles 0
 .PHONY : CMakeFiles/FAANG-stock-analysis.dir/rule

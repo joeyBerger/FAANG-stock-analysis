@@ -5,6 +5,11 @@ CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.o: ../src/data_aggre
 CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.o: ../src/data_aggregator.h
 CMakeFiles/FAANG-stock-analysis.dir/src/data_aggregator.cpp.o: ../src/raw_data.h
 
+CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.o: ../src/data_aggregator.h
+CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.o: ../src/data_anaylzer.cpp
+CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.o: ../src/data_anaylzer.h
+CMakeFiles/FAANG-stock-analysis.dir/src/data_anaylzer.cpp.o: ../src/raw_data.h
+
 CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o: ../src/data_importer.cpp
 CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o: ../src/data_importer.h
 
