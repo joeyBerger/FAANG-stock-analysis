@@ -47,23 +47,6 @@ class Strategies {
         std::vector<std::pair<std::string, std::vector<float>>> _data; //this shold get instantiated in constructor
         DataAggregator data_aggregator;
 
-        //TODO: get rid of round
-        // float round(float var) {
-        //     // 37.66666 * 100 =3766.66
-        //     // 3766.66 + .5 =3767.16    for rounding off value
-        //     // then type cast to int so value is 3767
-        //     // then divided by 100 so the value converted into 37.67
-        //     float value = (int)(var * 100 + .5);
-        //     return (float)value / 100;
-        // }
-
-        // float round(float x, int n){ 
-        //     int d = 0; 
-        //     if((x * pow(10, n + 1)) - (floor(x * pow(10, n))) > 4) d = 1; 
-        //     x = (floor(x * pow(10, n)) + d) / pow(10, n); 
-        //     return x; 
-        // }
-
         vector<RawData> analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points, string id) {
             //make this a static variable
             static map<string, int> column_map { 

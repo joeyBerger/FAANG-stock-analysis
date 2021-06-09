@@ -9,6 +9,8 @@
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
 iostream
 -
+raw_data.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_anaylzer.h
 iostream
@@ -22,19 +24,9 @@ data_aggregator.h
 stock.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
 
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.cpp
-raw_data.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
-
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
 iostream
 -
-stock.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
-
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.cpp
-stock.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
 iostream

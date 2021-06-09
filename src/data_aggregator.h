@@ -3,13 +3,19 @@
 
 using namespace std;
 #include <iostream>
-
-
+#include "raw_data.h"
 
 class DataAggregator {
     public:
-        void report_strategy_findings(string ticker, float percent_gained,int days_selling_after_buying,int winning_picks,int losing_picks,
-                                        float percentage_drop, bool adjusted_market_close = false) {
+        // void report_strategy_findings(string ticker, float percent_gained,int days_selling_after_buying,int winning_picks,int losing_picks,
+        //                                 float percentage_drop, bool adjusted_market_close = false) {
+        void report_strategy_findings(RawData raw_data) {
+
+            string ticker = raw_data.getTicker();
+            int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
+            float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
+            bool adjusted_market_close = raw_data.getType() != "dip_at_market_close";
+
             print_header();
             cout << "ANALYSIS FOR BUYING DIP WHEN MARKET CLOSES DOWN ";
             cout << setprecision(3) << percentage_drop << "%\n";
@@ -18,9 +24,15 @@ class DataAggregator {
             print_daily_stock_info(ticker,percent_gained,winning_picks,losing_picks,days_selling_after_buying);
         }
 
-        void report_strategy_findings(string ticker, float percent_gained,int winning_picks,
-                                        int losing_picks,float percentage_drop,int average_time_invested,
-                                        int totalBuys, int allowed_market_orders, int unutilized_market_orders) {
+        // void report_strategy_findings(string ticker, float percent_gained,int winning_picks,
+        //                                 int losing_picks,float percentage_drop,int average_time_invested,
+        //                                 int totalBuys, int allowed_market_orders, int unutilized_market_orders) {
+            void report_strategy_findings(RawData raw_data, int totalBuys, int unutilized_market_orders) {
+
+            string ticker = raw_data.getTicker();
+            int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), 
+                losing_picks = raw_data.getLosingPicks(), average_time_invested = raw_data.getAverageTimeInvested(), allowed_market_orders = raw_data.getBuyOrderLimit();
+            float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
 
             print_header();
             cout << "ANALYSIS FOR BUYING DIP WHEN MARKET CLOSES DOWN ";
@@ -30,8 +42,13 @@ class DataAggregator {
             print_yearly_stock_info(ticker, percent_gained,winning_picks,losing_picks,percentage_drop,average_time_invested,totalBuys, allowed_market_orders, unutilized_market_orders);
         }
 
-        void report_buy_dip_with_days_trade_strategy_by_percent(string ticker, float percent_gained,int days_selling_after_buying,int winning_picks,int losing_picks,
-                                        float percentage_drop, bool adjusted_market_close = false) {
+
+        void report_buy_dip_with_days_trade_strategy_by_percent(RawData raw_data) {
+            string ticker = raw_data.getTicker();
+            int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
+            float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
+            bool adjusted_market_close = raw_data.getType() != "dip_at_market_close";
+
             print_header();
             cout << "BEST PERFORMING STRATEGY WHEN BUYING DIPS, BY PERCENTAGE, WHEN STOCK DIPS AT LEAST ";
             cout << setprecision(3) << percentage_drop << "%,\n";
@@ -40,15 +57,16 @@ class DataAggregator {
             print_daily_stock_info(ticker,percent_gained,winning_picks,losing_picks,days_selling_after_buying);
         }
 
+        // void report_buy_dip_with_days_trade_strategy_by_earnings(string ticker, float percent_gained,int days_selling_after_buying,int winning_picks,int losing_picks,
+        //                                 float percentage_drop,
+        //                                 float dollars_earned, float total_investment, float individual_buy_dollar_amount,
+        //                                 bool adjusted_market_close = false) {
+            void report_buy_dip_with_days_trade_strategy_by_earnings(RawData raw_data,float dollars_earned, float total_investment, float individual_buy_dollar_amount) {
+            string ticker = raw_data.getTicker();
+            int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
+            float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
+            bool adjusted_market_close = raw_data.getType() != "dip_at_market_close";    
 
-
-
-
-
-        void report_buy_dip_with_days_trade_strategy_by_earnings(string ticker, float percent_gained,int days_selling_after_buying,int winning_picks,int losing_picks,
-                                        float percentage_drop,
-                                        float dollars_earned, float total_investment, float individual_buy_dollar_amount,
-                                        bool adjusted_market_close = false) {
             print_header();
 
             cout << "BEST PERFORMING STRATEGY WHEN BUYING DIPS, BY DOLLAR AMOUNT EARNED,\n";
@@ -66,9 +84,15 @@ class DataAggregator {
 
 
         
-        void report_best_year_to_date_buy_strategy_by_percent(string ticker, float percent_gained,int winning_picks,
-                                        int losing_picks,float percentage_drop,int average_time_invested,
-                                        int totalBuys, int allowed_market_orders, int unutilized_market_orders) {
+        // void report_best_year_to_date_buy_strategy_by_percent(string ticker, float percent_gained,int winning_picks,
+        //                                 int losing_picks,float percentage_drop,int average_time_invested,
+        //                                 int totalBuys, int allowed_market_orders, int unutilized_market_orders) {
+
+        void report_best_year_to_date_buy_strategy_by_percent(RawData raw_data,int totalBuys, int unutilized_market_orders) {
+            string ticker = raw_data.getTicker();
+            int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(), average_time_invested = raw_data.getAverageTimeInvested(), allowed_market_orders = raw_data.getBuyOrderLimit();; 
+            float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
+            
             print_header();
             cout << "BEST YEARLY PERFORMING STRATEGY, BY PERCENTAGE, WHEN STOCK DIPS AT LEAST ";
             cout << setprecision(3) << percentage_drop << "%,\n";
@@ -78,10 +102,18 @@ class DataAggregator {
         }
 
 
-        void report_best_year_to_date_buy_strategy_by_potential_earnings(string ticker, float percent_gained,int winning_picks,
-                                        int losing_picks,float percentage_drop,int average_time_invested,
-                                        int totalBuys, int allowed_market_orders, int unutilized_market_orders,
-                                        float dollars_earned, float total_investment, float individual_buy_dollar_amount) {
+        // void report_best_year_to_date_buy_strategy_by_potential_earnings(string ticker, float percent_gained,int winning_picks,
+        //                                 int losing_picks,float percentage_drop,int average_time_invested,
+        //                                 int totalBuys, int allowed_market_orders, int unutilized_market_orders,
+        //                                 float dollars_earned, float total_investment, float individual_buy_dollar_amount) {
+            void report_best_year_to_date_buy_strategy_by_potential_earnings(RawData raw_data,                     
+                                int totalBuys, int unutilized_market_orders,
+                                float dollars_earned, float total_investment, float individual_buy_dollar_amount) {
+
+            string ticker = raw_data.getTicker();
+            int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(), average_time_invested = raw_data.getAverageTimeInvested(), allowed_market_orders = raw_data.getBuyOrderLimit();; 
+            float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();                      
+
             print_header();
             cout << "BEST YEARLY PERFORMING STRATEGY, BY DOLLAR AMOUNT EARNED,\n";
             cout << "WHEN INVESTING $"  << (int)individual_buy_dollar_amount << " PER TRADE, WHEN STOCK DIPS AT LEAST ";

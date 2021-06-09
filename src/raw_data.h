@@ -14,6 +14,11 @@ class RawData {
         //TODO: replace string with enum
         RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, int buy_order_limit, int winning_picks, int losing_picks, int average_time_invested);
 
+
+        // RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, int buy_order_limit, int winning_picks, int losing_picks, int average_time_invested) {
+
+        // }
+        
         string getType();
         string getTicker();
         float getPercentGained();
