@@ -142,6 +142,33 @@ FAANG-stock-analysis/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/build
 .PHONY : FAANG-stock-analysis/fast
 
+src/data_importer.o: src/data_importer.cpp.o
+
+.PHONY : src/data_importer.o
+
+# target to build an object file
+src/data_importer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o
+.PHONY : src/data_importer.cpp.o
+
+src/data_importer.i: src/data_importer.cpp.i
+
+.PHONY : src/data_importer.i
+
+# target to preprocess a source file
+src/data_importer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.i
+.PHONY : src/data_importer.cpp.i
+
+src/data_importer.s: src/data_importer.cpp.s
+
+.PHONY : src/data_importer.s
+
+# target to generate assembly for a file
+src/data_importer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.s
+.PHONY : src/data_importer.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -223,6 +250,33 @@ src/stock.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.s
 .PHONY : src/stock.cpp.s
 
+src/strategies.o: src/strategies.cpp.o
+
+.PHONY : src/strategies.o
+
+# target to build an object file
+src/strategies.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o
+.PHONY : src/strategies.cpp.o
+
+src/strategies.i: src/strategies.cpp.i
+
+.PHONY : src/strategies.i
+
+# target to preprocess a source file
+src/strategies.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.i
+.PHONY : src/strategies.cpp.i
+
+src/strategies.s: src/strategies.cpp.s
+
+.PHONY : src/strategies.s
+
+# target to generate assembly for a file
+src/strategies.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FAANG-stock-analysis.dir/build.make CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.s
+.PHONY : src/strategies.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -232,6 +286,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FAANG-stock-analysis"
+	@echo "... src/data_importer.o"
+	@echo "... src/data_importer.i"
+	@echo "... src/data_importer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -241,6 +298,9 @@ help:
 	@echo "... src/stock.o"
 	@echo "... src/stock.i"
 	@echo "... src/stock.s"
+	@echo "... src/strategies.o"
+	@echo "... src/strategies.i"
+	@echo "... src/strategies.s"
 .PHONY : help
 
 

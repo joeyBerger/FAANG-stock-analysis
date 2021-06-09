@@ -18,7 +18,19 @@ iostream
 data_aggregator.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
 
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.cpp
+data_importer.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
+
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
+string
+-
+vector
+-
+fstream
+-
+sstream
+-
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/main.cpp
 stock.h
@@ -69,4 +81,6 @@ data_aggregator.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
 raw_data.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
+vector
+-
 

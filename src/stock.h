@@ -34,7 +34,7 @@ class Stock {
 
     private:
         DataImporter _data_importer;
-        Strategies strategies;
+        // Strategies strategies;
         string _ticker;
         string _filepath;
         std::vector<std::pair<std::string, std::vector<float>>> _stock_data;

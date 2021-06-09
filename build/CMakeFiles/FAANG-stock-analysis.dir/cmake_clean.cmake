@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o"
   "CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o"
   "CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o"
   "CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.o"
+  "CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o"
   "FAANG-stock-analysis"
   "FAANG-stock-analysis.pdb"
 )

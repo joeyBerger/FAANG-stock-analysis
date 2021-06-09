@@ -7,6 +7,7 @@ using namespace std;
 
 class DataAggregator {
     public:
+    
         void report_strategy_findings(RawData raw_data) {
 
             string ticker = raw_data.getTicker();
@@ -36,7 +37,6 @@ class DataAggregator {
             print_header();
             print_yearly_stock_info(ticker, percent_gained,winning_picks,losing_picks,percentage_drop,average_time_invested,totalBuys, allowed_market_orders, unutilized_market_orders);
         }
-
 
         void report_buy_dip_with_days_trade_strategy_by_percent(RawData raw_data) {
             string ticker = raw_data.getTicker();

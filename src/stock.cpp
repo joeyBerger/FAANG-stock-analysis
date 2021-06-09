@@ -11,7 +11,8 @@ Stock::Stock(string ticker) {
 }
 
 void Stock::read_csv_data() {
-    _raw_data = strategies.run_strategies(_ticker,_stock_data);
+    Strategies strategies(_ticker,_stock_data);
+    _raw_data = strategies.run_strategies();
 }
 
 void Stock::analyze_stock_data() {

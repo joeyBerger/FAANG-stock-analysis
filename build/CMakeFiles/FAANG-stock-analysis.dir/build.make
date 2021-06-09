@@ -115,11 +115,39 @@ CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.cpp -o CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.s
 
+CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o: CMakeFiles/FAANG-stock-analysis.dir/flags.make
+CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o: ../src/strategies.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o -c /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.cpp
+
+CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.cpp > CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.i
+
+CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.cpp -o CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.s
+
+CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o: CMakeFiles/FAANG-stock-analysis.dir/flags.make
+CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o: ../src/data_importer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o -c /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.cpp
+
+CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.cpp > CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.i
+
+CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.cpp -o CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.s
+
 # Object files for target FAANG-stock-analysis
 FAANG__stock__analysis_OBJECTS = \
 "CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o" \
 "CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.o" \
-"CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o"
+"CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o" \
+"CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o" \
+"CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o"
 
 # External object files for target FAANG-stock-analysis
 FAANG__stock__analysis_EXTERNAL_OBJECTS =
@@ -127,9 +155,11 @@ FAANG__stock__analysis_EXTERNAL_OBJECTS =
 FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o
 FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/src/stock.cpp.o
 FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o
+FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/src/strategies.cpp.o
+FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/src/data_importer.cpp.o
 FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/build.make
 FAANG-stock-analysis: CMakeFiles/FAANG-stock-analysis.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable FAANG-stock-analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable FAANG-stock-analysis"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FAANG-stock-analysis.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
