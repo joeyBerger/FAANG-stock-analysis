@@ -24,7 +24,7 @@ class Stock {
         void analyze_stock_data();
         void print_all_investment_strategies();
         void print_strongest_investment_strategies();
-        void print_strongest_stock_given_various_tickers(vector<Stock> stocks);
+        void print_strongest_stock_given_various_tickers(std::vector<std::shared_ptr<Stock>> stocks);
 
         enum Strategy_Type {
             dip_at_market_close,

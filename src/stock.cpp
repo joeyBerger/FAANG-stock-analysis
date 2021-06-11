@@ -35,8 +35,8 @@ void Stock::print_strongest_investment_strategies() {
     _data_analyzer.output_best_year_to_date_buy_strategy_by_potential_earnings();
 }
 
-void Stock::print_strongest_stock_given_various_tickers(vector<Stock> stocks) {
+void Stock::print_strongest_stock_given_various_tickers(std::vector<std::shared_ptr<Stock>> stocks) {
     vector<vector<vector<RawData>>> raw_data_collection;
-    for (auto stock : stocks) {raw_data_collection.push_back(stock._raw_data);}
+    for (auto stock : stocks) {raw_data_collection.push_back(stock->_raw_data);}
     _data_analyzer.compare_all_stock_strategy_data(raw_data_collection);
 }

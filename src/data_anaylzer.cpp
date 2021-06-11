@@ -5,18 +5,18 @@ DataAnalyzer::DataAnalyzer() {}
 
 void DataAnalyzer::init(vector<vector<RawData>> raw_data_collection) {_raw_data_collection = raw_data_collection;}
 
+//for all raw data of type, out put day(s) trading strategy findings
 void DataAnalyzer::output_buy_dip_with_days_trade_strategy(string type) {
     auto data_collection = return_raw_data_collection(type);
-    cout << data_collection.back().getType() << "\n";
     for (auto data : data_collection) {
         _data_aggregator.report_strategy_findings(data);
     }
     _data_aggregator.print_large_data_seperater();
 }
 
+//for all raw data of type, out put day(s) trading strategy findings
 void DataAnalyzer::output_year_to_date_buy_strategy() {
     auto data_collection = return_raw_data_collection("yearly_analysis");
-    cout << "data_collection " << _raw_data_collection.size() << "\n";
     for (auto data : data_collection) {
         _data_aggregator.report_strategy_findings(data,data.getWinningPicks() + data.getLosingPicks(),data.getBuyOrderLimit() - (data.getWinningPicks() + data.getLosingPicks()));
     }
