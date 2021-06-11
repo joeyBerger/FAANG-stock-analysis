@@ -1,13 +1,12 @@
 #include "stock.h"
-#include <iostream>
-#include <fstream>
-#include <cstdio>
+// #include <iostream>
+#include "strategy_types.h"
 
 int main(int argc, const char * argv[]) {
     
     //analysis output parameters
-    const bool PRINT_ALL_MASS_DATA = false;
-    const bool PRINT_TOP_PERFORMING_STRATEGIES = false;
+    const bool PRINT_ALL_MASS_DATA = true;
+    const bool PRINT_TOP_PERFORMING_STRATEGIES = true;
     const bool PRINT_TOP_PERFOMRING_AMONG_ALL_FAANG_STOCKS = true;
 
     //output file name
@@ -19,8 +18,6 @@ int main(int argc, const char * argv[]) {
 
     //delete file
     std::remove(file_name);  
-    bool failed = !std::ifstream(file_name);
-    if (failed) cout << "Error deleting output file\n";
 
     //hold stocks objects
     std::vector<std::shared_ptr<Stock>> stocks;
@@ -52,17 +49,7 @@ int main(int argc, const char * argv[]) {
         s->print_strongest_stock_given_various_tickers(stocks);
     }
 
-    // std::stringstream buffer;
-    // buffer << "Text" << std::endl;
-    // buffer << "Text1" << std::endl;
-    // buffer << "Text2" << std::endl;
-    // buffer << "Text3" << std::endl;
-    // cout << buffer.str() << "\n";
-
-
-    // ofstream myfile;
-    // myfile.open ("example.txt");
-    // myfile << buffer.str();
-    // myfile.close();
+    std::cout << "FAANG Analysis Complete. See analysis_output.txt in build directory.\n";
+    
     return 0;
 }

@@ -20,6 +20,7 @@ CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/raw_data.h
 CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/stock.h
 CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/strategies.h
+CMakeFiles/FAANG-stock-analysis.dir/src/main.cpp.o: ../src/strategy_types.h
 
 CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o: ../src/raw_data.cpp
 CMakeFiles/FAANG-stock-analysis.dir/src/raw_data.cpp.o: ../src/raw_data.h

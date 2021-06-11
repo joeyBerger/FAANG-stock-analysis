@@ -17,7 +17,7 @@ class DataAggregator {
         void report_best_year_to_date_buy_strategy_by_percent(RawData raw_data,int totalBuys, int unutilized_market_orders);
         void report_best_year_to_date_buy_strategy_by_potential_earnings(RawData raw_data,int totalBuys, int unutilized_market_orders,float dollars_earned, float total_investment, float individual_buy_dollar_amount);
         string print_header();
-        void print_daily_stock_info(string ticker, float percent_gained, int winning_picks, int losing_picks, int days_selling_after_buying);
+        std::stringstream print_daily_stock_info(string ticker, float percent_gained, int winning_picks, int losing_picks, int days_selling_after_buying);
         std::stringstream print_yearly_stock_info(string ticker, float percent_gained,int winning_picks,int losing_picks,float percentage_drop,int average_time_invested,int totalBuys, int allowed_market_orders, int unutilized_market_orders);
         void print_large_data_seperater();
         string return_days_string(int days);
