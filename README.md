@@ -10,25 +10,6 @@ Runs 3 basic strategies:
 ## Program Structure
 Upon running this program, various stocks are instantiated in main.cpp. The constructor of class Stock (stock.cpp) invokes a funciton (importData in data_importer.cpp) to import data stored in csv files. Once all stock data is imported, buy/sell strategies are run and its ensuing data is stored (strategies.cpp and data_analyzer.cpp). Next, based on the configuration of output in main.cpp, stock data is analyzed and written to a file in the build folder (data_aggregator.cpp). 
 
-## Requirements met
-
-* The project demonstrates an understanding of C++ functions and control structures.
-    * Throughout project
-* The project reads data from a file and process the data, or the program writes data to a file.
-     * data_importer.cpp, lines 13-31
-* The project uses Object Oriented Programming techniques.
-    * Throughout project
-* Classes use appropriate access specifiers for class members.
-    * Throughout project, strategies.h, lines 11-35
-* Class constructors utilize member initialization lists.
-    * Throughout project, strategies.cpp, lines 4-10
-* Classes encapsulate behavior.
-    * Throughout project, raw_data.cpp, lines 30-38
-* The project makes use of references in function declarations.
-    * data.analyzer.cpp, line 126 
-* The project uses smart pointers instead of raw pointers.
-    * main.cpp, line 22
-
 ## Dependencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
