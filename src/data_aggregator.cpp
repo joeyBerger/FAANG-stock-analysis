@@ -2,8 +2,8 @@
 #include <fstream>
 #include <sstream> 
 
+//output data for day to day trading
 void DataAggregator::report_strategy_findings(RawData raw_data) {
-
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
     float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
@@ -19,8 +19,8 @@ void DataAggregator::report_strategy_findings(RawData raw_data) {
     fout << print_daily_stock_info(ticker,percent_gained,winning_picks,losing_picks,days_selling_after_buying).str();
 }
 
+//output data for ytd trading
 void DataAggregator::report_strategy_findings(RawData raw_data, int totalBuys, int unutilized_market_orders) {
-
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), 
         losing_picks = raw_data.getLosingPicks(), average_time_invested = raw_data.getAverageTimeInvested(), allowed_market_orders = raw_data.getBuyOrderLimit();
@@ -36,6 +36,7 @@ void DataAggregator::report_strategy_findings(RawData raw_data, int totalBuys, i
     fout << print_yearly_stock_info(ticker, percent_gained,winning_picks,losing_picks,percentage_drop,average_time_invested,totalBuys, allowed_market_orders, unutilized_market_orders).str();
 }
 
+//percent, day to
 void DataAggregator::report_buy_dip_with_days_trade_strategy_by_percent(RawData raw_data) {
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
@@ -72,6 +73,7 @@ void DataAggregator::report_buy_dip_with_days_trade_strategy_by_earnings(RawData
     fout << print_daily_stock_info(ticker,percent_gained,winning_picks,losing_picks,days_selling_after_buying).str();
 }
 
+//percent, ytd
 void DataAggregator::report_best_year_to_date_buy_strategy_by_percent(RawData raw_data,int totalBuys, int unutilized_market_orders) {
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(), average_time_invested = raw_data.getAverageTimeInvested(), allowed_market_orders = raw_data.getBuyOrderLimit();; 
@@ -87,6 +89,7 @@ void DataAggregator::report_best_year_to_date_buy_strategy_by_percent(RawData ra
     fout << print_yearly_stock_info(ticker, percent_gained,winning_picks,losing_picks,percentage_drop,average_time_invested,totalBuys, allowed_market_orders, unutilized_market_orders).str();
 }
 
+//earnings, ytd
 void DataAggregator::report_best_year_to_date_buy_strategy_by_potential_earnings(RawData raw_data,                     
                         int totalBuys, int unutilized_market_orders,
                         float dollars_earned, float total_investment, float individual_buy_dollar_amount) {
@@ -113,7 +116,7 @@ string DataAggregator::print_header() {
     return "------------------------------------------------\n";
 }
 
-
+//generric helper
 std::stringstream DataAggregator::print_daily_stock_info(string ticker, float percent_gained, int winning_picks, int losing_picks, int days_selling_after_buying) {
     std::stringstream buffer;
     buffer << "STOCK: " << ticker << "\n";
@@ -124,6 +127,7 @@ std::stringstream DataAggregator::print_daily_stock_info(string ticker, float pe
     return buffer;
 }
 
+//generric helper
 std::stringstream DataAggregator::print_yearly_stock_info(string ticker, float percent_gained,int winning_picks,
                                 int losing_picks,float percentage_drop,int average_time_invested,
                                 int totalBuys, int allowed_market_orders, int unutilized_market_orders) {
@@ -156,6 +160,7 @@ string DataAggregator::return_close_string(bool adjusted_market_close) {
     return adjusted_market_close ? "ADJUSTED CLOSE" : "CLOSE";
 }
 
+//retrun file stream
 std::ofstream DataAggregator::return_ofstream() {
 
     std::ofstream fout;

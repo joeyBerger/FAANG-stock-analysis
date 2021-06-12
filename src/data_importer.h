@@ -8,6 +8,7 @@
 
 class DataImporter {
     public:
+        //public method
         std::vector<std::pair<std::string, std::vector<float>>> importData(std::string path);
 };
 

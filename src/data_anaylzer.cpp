@@ -5,7 +5,7 @@ DataAnalyzer::DataAnalyzer() {}
 
 void DataAnalyzer::init(vector<vector<RawData>> raw_data_collection) {_raw_data_collection = raw_data_collection;}
 
-//for all raw data of type, out put day(s) trading strategy findings
+//for all raw data of type, output day(s) trading strategy findings
 void DataAnalyzer::output_buy_dip_with_days_trade_strategy(StrategyTypes type) {
     auto data_collection = return_raw_data_collection(type);
     for (auto data : data_collection) {
@@ -14,7 +14,7 @@ void DataAnalyzer::output_buy_dip_with_days_trade_strategy(StrategyTypes type) {
     _data_aggregator.print_large_data_seperater();
 }
 
-//for all raw data of type, out put day(s) trading strategy findings
+//for all raw data of type, output ytd trading strategy findings
 void DataAnalyzer::output_year_to_date_buy_strategy() {
     auto data_collection = return_raw_data_collection(StrategyTypes::yearly_analysis);
     for (auto data : data_collection) {
@@ -22,12 +22,14 @@ void DataAnalyzer::output_year_to_date_buy_strategy() {
     }
 }
 
+//for all raw data of type, best output day(s) trading strategy findings, percent
 void DataAnalyzer::output_best_buy_dip_with_days_trade_strategy_by_percent(StrategyTypes type) {
     auto data = find_top_performing_by_percent(type);
     _data_aggregator.report_buy_dip_with_days_trade_strategy_by_percent(data);
     _data_aggregator.print_large_data_seperater();
 }
 
+//for all raw data of type, best output day(s) trading strategy findings, earnings
 void DataAnalyzer::output_best_buy_dip_with_days_trade_strategy_by_earnings(StrategyTypes type) {
     float dollars_earned = 0.0, total_investment = 0.0, individual_buy_dollar_amount = INDIVIDUAL_BUY_DOLLAR_AMOUNT;
     auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,individual_buy_dollar_amount,type);
@@ -40,6 +42,7 @@ void DataAnalyzer::output_best_buy_dip_with_days_trade_strategy_by_earnings(Stra
     _data_aggregator.print_large_data_seperater();
 }
 
+//for all raw data of type, output ytd trading strategy findings, percent
 void DataAnalyzer::output_best_year_to_date_buy_strategy_by_percent() {
     auto data = find_top_performing_by_percent(StrategyTypes::yearly_analysis);
     _data_aggregator.report_best_year_to_date_buy_strategy_by_percent(
@@ -49,6 +52,7 @@ void DataAnalyzer::output_best_year_to_date_buy_strategy_by_percent() {
     );
 }
 
+//for all raw data of type, output ytd trading strategy findings, earnings
 void DataAnalyzer::output_best_year_to_date_buy_strategy_by_potential_earnings() {
     float dollars_earned = 0.0, total_investment = 0.0;
     auto data = find_top_performing_by_potential_earnings(dollars_earned,total_investment,INDIVIDUAL_BUY_DOLLAR_AMOUNT,StrategyTypes::yearly_analysis);
@@ -62,6 +66,7 @@ void DataAnalyzer::output_best_year_to_date_buy_strategy_by_potential_earnings()
     );
 }
 
+//per stocks inputted find best overall in terms of earnings
 void DataAnalyzer::compare_all_stock_strategy_data(vector<vector<vector<RawData>>> raw_data_collection) {
     vector<RawData> best_yearly_strategy_by_dollar_earned;
 
@@ -93,6 +98,7 @@ void DataAnalyzer::compare_all_stock_strategy_data(vector<vector<vector<RawData>
     );
 }
 
+//helper function to return data of given strategy type
 vector<RawData> DataAnalyzer::return_raw_data_collection(StrategyTypes id) {
     for (auto data : _raw_data_collection) {
         if (data.front().getType() == id) return data;
@@ -101,6 +107,7 @@ vector<RawData> DataAnalyzer::return_raw_data_collection(StrategyTypes id) {
     return rd;
 }
 
+//helper function to return top data of given strategy type, percent
 RawData DataAnalyzer::find_top_performing_by_percent(StrategyTypes id) {
     auto data_collection = return_raw_data_collection(id);
     int raw_data_idx = 0, i = 0;
@@ -115,6 +122,7 @@ RawData DataAnalyzer::find_top_performing_by_percent(StrategyTypes id) {
     return data_collection.at(raw_data_idx);
 }
 
+//helper function to return top data of given strategy type, earnings
 RawData DataAnalyzer::find_top_performing_by_potential_earnings(float &dollars_earned, float &total_investment, float individual_buy_dollar_amount, StrategyTypes id) {
     auto data_collection = return_raw_data_collection(id);
     int raw_data_idx = 0, i = 0;

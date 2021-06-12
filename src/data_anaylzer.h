@@ -1,21 +1,21 @@
 #ifndef DATAANALYZER
 #define DATAANALYZER
-#include<iostream>
+
 #include<vector>
 #include "data_aggregator.h"
 #include "strategy_types.h"
-
-using namespace std;
 
 class RawData;
 
 class DataAnalyzer {
 
     public:
-    
+
+        //constructors
         DataAnalyzer(vector<vector<RawData>> raw_data_collection);
         DataAnalyzer();
 
+        //methods
         void init(vector<vector<RawData>> raw_data_collection);
         void output_buy_dip_with_days_trade_strategy(StrategyTypes type);        
         void output_year_to_date_buy_strategy();
