@@ -7,7 +7,7 @@ void DataAggregator::report_strategy_findings(RawData raw_data) {
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
     float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
-    bool adjusted_market_close = raw_data.getType() != "dip_at_market_close";
+    bool adjusted_market_close = raw_data.getType() != StrategyTypes::dip_at_market_close;
 
     auto fout = return_ofstream();
 
@@ -40,7 +40,7 @@ void DataAggregator::report_buy_dip_with_days_trade_strategy_by_percent(RawData 
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
     float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
-    bool adjusted_market_close = raw_data.getType() != "dip_at_market_close";
+    bool adjusted_market_close = raw_data.getType() != StrategyTypes::dip_at_market_close;
 
     auto fout = return_ofstream();
 
@@ -56,7 +56,7 @@ void DataAggregator::report_buy_dip_with_days_trade_strategy_by_earnings(RawData
     string ticker = raw_data.getTicker();
     int days_selling_after_buying = raw_data.getDaysAfterBuying(), winning_picks = raw_data.getWinningPicks(), losing_picks = raw_data.getLosingPicks(); 
     float percent_gained = raw_data.getPercentGained(), percentage_drop = raw_data.getPercentageDropBuySignal();
-    bool adjusted_market_close = raw_data.getType() != "dip_at_market_close";    
+    bool adjusted_market_close = raw_data.getType() != StrategyTypes::dip_at_market_close;    
 
     auto fout = return_ofstream();
 

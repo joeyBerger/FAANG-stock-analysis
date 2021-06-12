@@ -14,55 +14,15 @@ raw_data.h
 iomanip
 -
 
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_anaylzer.h
-iostream
--
-vector
--
-data_aggregator.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
-
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
-string
--
-vector
--
-fstream
--
-sstream
--
-
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/main.cpp
-stock.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
 strategy_types.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategy_types.h
-
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
 iostream
 -
 
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/stock.h
-iostream
--
-string
--
-fstream
--
-vector
--
-utility
--
-sstream
--
-data_importer.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_importer.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.cpp
 strategies.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h
-raw_data.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
-data_anaylzer.h
-/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_anaylzer.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategies.h
 sstream
@@ -75,12 +35,14 @@ cmath
 -
 math.h
 -
+vector
+-
 data_aggregator.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/data_aggregator.h
 raw_data.h
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/raw_data.h
-vector
--
+strategy_types.h
+/Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategy_types.h
 
 /Users/joeyberger/Documents/GitHub/FAANG-stock-analysis/src/strategy_types.h
 

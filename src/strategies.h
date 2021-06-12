@@ -7,9 +7,10 @@ using namespace std;
 #include <iomanip> 
 #include <cmath> 
 #include <math.h>
+#include <vector>
 #include "data_aggregator.h"
 #include "raw_data.h"
-#include <vector>
+#include "strategy_types.h"
 
 class Strategies {
     public:
@@ -25,7 +26,7 @@ class Strategies {
         vector<float> percentage_drop_buy_points;
         vector<int> buy_order_limits;
 
-        vector<RawData> analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points, string id);
+        vector<RawData> analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points, StrategyTypes id);
         vector<RawData> analyze_market_dip_to_current_date(vector<float> percentage_drop_buy_points, vector<int> buy_order_limits);          
 };
 

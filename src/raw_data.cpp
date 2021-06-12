@@ -2,7 +2,7 @@
 
 RawData::RawData() {}
 
-RawData::RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, 
+RawData::RawData(StrategyTypes type, string ticker, float percent_gained, float percentage_drop_buy_siganl, 
                  int winning_picks, int losing_picks, int days_selling_after_buying) :
             _type(type),
             _ticker(ticker),
@@ -14,7 +14,7 @@ RawData::RawData(string type, string ticker, float percent_gained, float percent
         {}
 
 
-RawData::RawData(string type, string ticker, float percent_gained, float percentage_drop_buy_siganl, 
+RawData::RawData(StrategyTypes type, string ticker, float percent_gained, float percentage_drop_buy_siganl, 
                  int buy_order_limit, int winning_picks, int losing_picks, int average_time_invested) :
             _type(type),
             _ticker(ticker),
@@ -28,7 +28,7 @@ RawData::RawData(string type, string ticker, float percent_gained, float percent
 
         {}
 
-string RawData::getType() {return _type;}
+StrategyTypes RawData::getType() {return _type;}
 string RawData::getTicker() {return _ticker;}
 float RawData::getPercentGained() {return _percent_gained;}
 float RawData::getPercentageDropBuySignal() {return _percentage_drop_buy_siganl;}

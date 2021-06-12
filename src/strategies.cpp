@@ -20,19 +20,18 @@ Strategies::Strategies(string ticker, std::vector<std::pair<std::string, std::ve
     buy_order_limits = b;
 }
 
-
 vector<vector<RawData>> Strategies::run_strategies() {
     vector<vector<RawData>> raw_data;
-    raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,"dip_at_market_close"));
-    raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,"dips_at_market_adjusted_close"));
+    raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,StrategyTypes::dip_at_market_close));
+    raw_data.push_back(analyze_same_closing_day_market_dip(days_between,percentage_drop_buy_points,StrategyTypes::dip_at_market_adjusted_close));
     raw_data.push_back(analyze_market_dip_to_current_date(percentage_drop_buy_points, buy_order_limits));
     return raw_data;
 }
 
-
-vector<RawData> Strategies::analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points, string id) {
+vector<RawData> Strategies::analyze_same_closing_day_market_dip(vector<int> days_between_collection, vector<float> percentage_drop_buy_points, StrategyTypes id) {
     auto open = _data.at(data_column_map["Open"]).second;
-    string type = id == "dip_at_market_close" ? "Close" : "Adj_Close";
+    
+    string type = id == StrategyTypes::dip_at_market_close ? "Close" : "Adj_Close";
     auto close = _data.at(data_column_map[type]).second;
     vector<RawData> raw_data_collection;
 
@@ -96,7 +95,7 @@ vector<RawData> Strategies::analyze_market_dip_to_current_date(vector<float> per
             if (resulting_percetage_gain.size() > 0 && resulting_percetage_gain.back() == percent_gained) continue;
             resulting_percetage_gain.push_back(percent_gained);
             
-            RawData rd("yearly_analysis",_ticker,percent_gained,percentage_drop_point*100,buy_order_limit,hits,misses,int(totalTimeInvested / (hits + misses)));
+            RawData rd(StrategyTypes::yearly_analysis,_ticker,percent_gained,percentage_drop_point*100,buy_order_limit,hits,misses,int(totalTimeInvested / (hits + misses)));
             raw_data_collection.push_back(rd);
         }
     }

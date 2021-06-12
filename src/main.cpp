@@ -1,5 +1,4 @@
 #include "stock.h"
-// #include <iostream>
 #include "strategy_types.h"
 
 int main(int argc, const char * argv[]) {

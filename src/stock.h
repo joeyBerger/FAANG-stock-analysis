@@ -12,6 +12,7 @@
 #include "strategies.h"
 #include "raw_data.h"
 #include "data_anaylzer.h"
+#include "strategy_types.h"
 
 // using namespace std;
 
@@ -28,7 +29,7 @@ class Stock {
 
         enum Strategy_Type {
             dip_at_market_close,
-            dips_at_market_adjusted_close,
+            dip_at_market_adjusted_close,
             best_yearly_strategy_by_dollar_earned
         };
 
