@@ -1,6 +1,7 @@
 #ifndef DATAAGGREGATOR
 #define DATAAGGREGATOR
 
+#include <iomanip>
 #include "raw_data.h"
 
 class DataAggregator {

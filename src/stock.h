@@ -1,6 +1,7 @@
 #ifndef STOCK_H
 #define STOCK_H
 
+#include <memory>
 #include "data_importer.h"
 #include "strategies.h"
 #include "raw_data.h"
